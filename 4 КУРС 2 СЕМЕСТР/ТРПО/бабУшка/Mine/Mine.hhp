@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Mine.chm
+Contents file=saperVar426.hhc
+Default Window=Сапер. Вариант №1
+Default topic=mine1.html
+Display compile progress=No
+Index file=saperVar426.hhk
+Language=0x419 Русский (Россия)
+
+[WINDOWS]
+Сапер. Вариант №1=,"saperVar426.hhc","saperVar426.hhk","mine1.html","mine1.html",,,,,0x2020,,0x46,,,,,,,,0
+
+
+[FILES]
+mine1.html
+mine_customize_field.html
+mine_play.html
+mine_object.html
+mine_tips.html
+champ.html
+
+[INFOTYPES]
+

@@ -1,0 +1,17 @@
+program Network;
+
+uses
+  Forms,
+  NetModel in 'NetModel.pas' {fMain},
+  NetObj in 'NetObj.pas',
+  Properties in 'Properties.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TfMain, fMain);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+
+end.

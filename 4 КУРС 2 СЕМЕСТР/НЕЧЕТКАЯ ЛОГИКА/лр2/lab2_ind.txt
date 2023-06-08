@@ -1,0 +1,177 @@
+ ans  =
+ 
+    1.  
+ 
+-->x=linspace(0,1,100)';
+ 
+-->y1=trimf(x,[0.2 0.4 0.5]);
+ 
+-->y2=trimf(x,[0.3 0.4 0.8]);
+ 
+-->plot2d(x,[y1 ],'m',x,[y2 ],'c');
+                                !--error 246 
+Функция не определена для заданных типов параметров,
+  проверьте параметры или определите функцию %c_plot2d как перегружаемую.
+ 
+ 
+-->xtitle("ФП trimf ","x","y(x)");
+ 
+-->plot2d(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2', %t);
+ 
+-->x=linspace(0,1,100)';
+ 
+-->y1=trimf(x,[0.2 0.4 0.5]);
+ 
+-->y2=trimf(x,[0.3 0.4 0.8]);
+ 
+-->plot2d(x,y1,'m',x,y2,'c');
+                          !--error 246 
+Функция не определена для заданных типов параметров,
+  проверьте параметры или определите функцию %c_plot2d как перегружаемую.
+ 
+ 
+-->xtitle("ФП trimf ","x","y(x)");
+ 
+-->plot2d(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2', %t);
+ 
+-->x=linspace(0,1,100)';
+ 
+-->y1=trimf(x,[0.2 0.4 0.5]);
+ 
+-->y2=trimf(x,[0.3 0.4 0.8]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c');
+ 
+-->xtitle("ФП trimf ","x","y(x)");
+ 
+-->plot2d(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2', %t);
+ 
+-->x=linspace(0,1,100)';
+ 
+-->y1= trapmf (x,[0.2 0.4 0.5 0.6]);
+ 
+-->y2= trapmf (x,[0.1 0.3 0.4 0.8]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c');
+ 
+-->xtitle("ФП trapmf ","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2', %t);
+ 
+-->y1 = gauss2mf(x, [0.1 0.5 0.08 0.7]);
+ 
+-->y2 = gaussmf(x, [0.1 0.3]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c');
+ 
+-->xtitle("ФП gauss2mf, gaussmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=gauss2mf','f2(x)=gaussmf', %t);
+ 
+-->y1=gbellmf(x,[5 0.1/2 0.5]);
+ 
+-->y2=gbellmf(x,[6 0.2/2 0.6]);
+ 
+-->y3=gbellmf(x,[7 0.3/2 0.7]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c',x,[y3 ],'y');
+ 
+-->xtitle("ФП gbellmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2','f3(x)=y3' %t);
+                                           !--error 3 
+Ожидание закрывающей скобки.
+ 
+ 
+ 
+-->y1=gbellmf(x,[5 0.1/2 0.5]);
+ 
+-->y2=gbellmf(x,[6 0.2/2 0.6]);
+ 
+-->y3=gbellmf(x,[7 0.3/2 0.7]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c',x,[y3 ],'y');
+ 
+-->xtitle("ФП gbellmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1','f2(x)=y2','f3(x)=y3', %t);
+ 
+-->sig1=sigmf(x,[15 0.3]);
+ 
+-->sig2=sigmf(x,[ -17 0.5]);
+ 
+-->psig=psigmf(x,[8 0.5 -8 0.7]);
+ 
+-->dsig=dsigmf(x,[10 0.3 10 0.6]);
+ 
+-->plot(x,[sig1 ],'m',x,[psig ],'c',x,[sig2 ],'y',x,[dsig ],'r');
+ 
+-->xtitle("ФП sigmf, psigmf, dsigmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=sigmf','f2(x)=psigmf','f3(x)=sigmf','f4(x)=dsigmf',%t);
+ 
+-->p=pimf(x,[0.2 0.5 0.7 1.0]);
+ 
+-->z=zmf(x,[0.1 0.4]);
+ 
+-->s=smf(x,[0.7 0.9]);
+ 
+-->plot(x,[p ],'m',x,[z ],'c',x,[z ],'y');
+ 
+-->xtitle("ФП pimf, zmf, smf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=pimf','f2(x)=zmf','f3(x)=smf',%t);
+ 
+-->p=pimf(x,[0.2 0.5 0.7 1.0]);
+ 
+-->z=zmf(x,[0.1 0.4]);
+ 
+-->s=smf(x,[0.7 0.9]);
+ 
+-->plot(x,[p ],'m',x,[z ],'c',x,[s ],'y');
+ 
+-->xtitle("ФП pimf, zmf, smf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=pimf','f2(x)=zmf','f3(x)=smf',%t);
+ 
+-->diary(0)

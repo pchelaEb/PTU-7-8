@@ -1,0 +1,3 @@
+function y = hyp(t)
+    y = (2/(1+t))-1
+endfunction

@@ -1,0 +1,63 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Menus, ExtCtrls, jpeg;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Image1: TImage;
+    Button2: TButton;
+    Button3: TButton;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    procedure Button1Click(Sender: TObject);
+    procedure N1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses Unit2, Unit3;
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+WinExec(PChar('Color_NET/PetriM.exe'), SW_ShowNormal);
+end;
+
+procedure TForm1.N1Click(Sender: TObject);
+begin
+Form2.Show;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+WinExec(PChar('GPSS_NET/Enets.exe'), SW_ShowNormal);
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+WinExec(PChar('Vertif_NET/Project1.exe'), SW_ShowNormal);
+end;
+
+procedure TForm1.N2Click(Sender: TObject);
+begin
+Form3.Show;
+end;
+
+end.

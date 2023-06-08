@@ -1,0 +1,129 @@
+ ans  =
+ 
+    1.  
+ 
+-->5^1.2-(1.8/2.5)*(1.9/2.6+(1.8/2.5)^2)
+ ans  =
+ 
+    5.9992465  
+ 
+-->x = -1; y = 3 //pchelkina
+ y  =
+ 
+    3.  
+ 
+-->z = 1/(sqrt(y^2+x^3))
+ z  =
+ 
+    0.3535534  
+ 
+-->deff('z=fun(x,y)','z=sqrt(y^2+x^3)');
+ 
+-->x=-1; y=-2; z=fun(x,y) //pchelkina
+ z  =
+ 
+    1.7320508  
+ 
+-->function z=fun(x,y),
+-->z=%e^x+3*y
+-->endfunction
+Внимание : переопределение функции : fun                     . Выполните funcprot(0) для отключения этого сообщения
+
+ 
+-->fun(0,-2)//pchelkina
+ ans  =
+ 
+  - 5.  
+ 
+-->funcprot(0)
+ ans  =
+ 
+    1.  
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\fun.sci', -1)
+ 
+-->fun(1,1.5)
+ ans  =
+ 
+    1.997495  
+ 
+-->x=-1; for y=-(%pi/2):%pi/2,
+-->z=(sin(x)/x)*(sin(y)/y),
+-->end //pchelkina
+ z  =
+ 
+    0.5356971  
+ z  =
+ 
+    0.7965165  
+ z  =
+ 
+    0.8158725  
+ z  =
+ 
+    0.5828770  
+ 
+-->x=-(3*%pi):0.01:3*%pi;
+ 
+-->y=cos(2*x)*sin(x^2);
+                    !--error 10 
+Некорректное умножение.
+ 
+ 
+-->f=cos(2*x).*sin(x^2); //pchelkina
+ 
+-->plot2d(x,f);
+ 
+-->grid;
+  !--error 4 
+Неизвестная переменная: grid
+ 
+ 
+-->xgrid;
+ 
+-->>xtitle('Пример', 'ось Х', 'ось У');
+  !--error 1 
+Некорректное присвоение.
+ 
+ 
+-->xtitle('Пример', 'ось Х', 'ось У');
+ 
+-->legend('f(x)=cos(2*x)*sin(x^2)', %t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = "f(x)=cos(2*x)*sin(x^2)"
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = "Polyline"
+legend_location = "in_upper_right"
+position = [0.5952869,0.1325000]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+ 
+-->x=0:0.01:0.3*%pi;
+ 
+-->f=cos(x).*sin(x^2);
+ 
+-->plot3d(x,x,f)
+ 
+-->x=[0:0.01:0.3*%pi]';
+ 
+-->f=cos(x).*sin(x^2);
+ 
+-->plot3d(x,x,f)
+ 
+-->diary(0)

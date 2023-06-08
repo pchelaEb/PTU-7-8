@@ -1,0 +1,12 @@
+U = (0:0.01:10);
+m = 6; ls = 3; rs = 4;
+u_cp = u_tilde(U, m, ls, rs, cp);
+u_cg = u_tilde(U, m, ls, rs, cg);
+u_hyp = u_tilde(U, m, ls, rs, hyp);
+u_inverse_cp = u_tilde(U, m, ls, rs, inverse_cp);
+u_inverse_cg = u_tilde(U, m, ls, rs, inverse_cg);
+u_inverse_hyp = u_tilde(U, m, ls, rs, inverse_hyp);
+plot(U, u_cp, 'b', U, cg, 'r', U, hyp, 'g');
+plot(U, inverse_cp, 'black', U, inverse_cg, 'c', U, inverse_hyp, 'y');
+legend('cp', 'cg', 'hyp', 'inverse_cp', 'inverse_cg', 'inverse_hyp');
+xgrid;

@@ -1,0 +1,7 @@
+Tcore_low = 18; Tcore_high = 22; Hcore_low = 40; Hcore_high =60;
+T_Set = [18:2:38];
+H_Set = [40:5:100];
+kT = 2.2; kH = 1;
+
+
+max(0.1-((T(i)-Tcore_high)*kT+(H(j)-Hcore_low)*0.3*kH)/())

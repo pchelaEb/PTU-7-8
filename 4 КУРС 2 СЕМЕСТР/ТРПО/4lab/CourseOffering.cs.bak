@@ -1,0 +1,63 @@
+// FILE: E:/4lab//CourseOffering.cs
+
+// In this section you can add your own using directives
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:00000000000008C2 begin
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:00000000000008C2 end
+
+/// <summary>
+    ///  A class that represents ...
+    /// 
+    ///  @see OtherClasses
+    ///  @author your_name_here
+     /// </summary>
+public class CourseOffering
+{
+    // Attributes
+
+    public Integer studentsNum;
+
+    // Associations
+
+    /// <summary> 
+    /// </summary>
+    public ArrayList  myManager;
+
+    /// <summary> 
+    /// </summary>
+    public ArrayList  myCourse;
+
+    /// <summary> 
+    /// </summary>
+
+    // Operations
+
+    /// <summary>
+    ///  An operation that does...
+    /// 
+    ///  @param firstParam a description of this parameter
+    /// </summary>
+    /// <returns>
+    /// </returns>
+    public  Integer offeringOpen()
+    {
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:0000000000000914 begin
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:0000000000000914 end
+
+    }
+
+    /// <summary>
+    ///  An operation that does...
+    /// 
+    ///  @param firstParam a description of this parameter
+    /// </summary>
+    /// <param name="client">
+    /// </param>
+    /// <returns>
+    /// </returns>
+    public  void add( client)
+    {
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:0000000000000916 begin
+    // section -64--88-56-1--2a6843f9:187089954d9:-8000:0000000000000916 end
+
+    }
+} /* end class CourseOffering */

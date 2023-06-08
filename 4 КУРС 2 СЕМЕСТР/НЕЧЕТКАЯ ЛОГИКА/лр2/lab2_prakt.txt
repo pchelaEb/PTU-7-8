@@ -1,0 +1,115 @@
+ ans  =
+ 
+    1.  
+ 
+-->x=linspace(0,1,100)'; //pchelkina
+ 
+-->function y = trimf(x, ABC)
+--> a = ABC(1);
+--> b = ABC(2);
+--> c = ABC(3);
+-->if b > a then
+--> y1 = (x-a) / (b-a);
+--> else y1 = 1*(x > a);
+--> end
+--> if c > b then
+--> y2 = (c-x) / (c-b);
+--> else y2 = 1*(c < x);
+--> end
+--> y = max(min(y1, y2, 1), 0);
+-->endfunction
+Внимание : переопределение функции : trimf                   . Выполните funcprot(0) для отключения этого сообщения
+
+ 
+-->y1=trimf(x,[0.2 0.5 0.9]);
+ 
+-->plot2d(x,[y1 ]);
+ 
+-->xtitle("ФП trimf ","x","y(x)");
+ 
+-->plot2d(x, 0*x)
+ 
+-->xgrid
+ 
+-->legend('f1(x)=y1',1, %t);
+ 
+-->y1=trapmf(x,[0.2 0.5 0.6 0.9]);
+ 
+-->plot(x,[y1 ]);
+ 
+-->xtitle("ФП trapmf ","x","y(x)");
+ 
+-->plot2d(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1',1, %t);
+ 
+-->y1 = gauss2mf(x, [0.07 0.2 0.14 0.5]);
+ 
+-->y2 = gaussmf(x, [0.07 0.3]);
+ 
+-->plot(x,[y1 ],'m',x,[y2 ],'c');
+ 
+-->xtitle("ФП gauss2mf, gaussmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=gauss2mf','f2(x)=gaussmf', %t);
+ 
+-->y1=gbellmf(x,[10 0.2/2 0.2]);
+ 
+-->plot(x,[y1 ]);
+ 
+-->xtitle("ФП gbellmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=y1', %t);
+ 
+-->sig1=sigmf(x,[ -12 0.7]);
+ 
+-->psig=psigmf(x,[15 0.5 -15 0.7]);
+ 
+-->plot(x,[sig1 ],'m',x,[psig ],'c');
+ 
+-->xtitle("ФП sigmf, psigmf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=sigmf','f2(x)=psigmf', %t);
+ 
+-->function y = smf(x, AB)
+--> a = AB(1);
+--> b = AB(2);
+--> if (a < b) then
+--> ab2 = (a+b)/2;
+--> y1 = (x >= a & x <= ab2) .* (2.*((x-a)/(b-a)).^2);
+--> y2 = (x <= b & x > ab2) .* (1-2.*((x-b)/(b-a)).^2);
+--> y = y1 + y2 + (x > b) .* ones(size(x, 1), size(x, 2));
+--> else
+--> y = zeros(size(x, 1), size(x, 2));
+--> end
+-->endfunction
+Внимание : переопределение функции : smf                     . Выполните funcprot(0) для отключения этого сообщения
+
+ 
+-->s=smf(x,[0.3 0.7]);
+ 
+-->plot(x,[s ]);
+ 
+-->xtitle("ФП smf","x","y(x)");
+ 
+-->plot(x, 0*x)
+ 
+-->xgrid //pchelkina
+ 
+-->legend('f1(x)=smf', %t);
+ 
+-->diary(0)

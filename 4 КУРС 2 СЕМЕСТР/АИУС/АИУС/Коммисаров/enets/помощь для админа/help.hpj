@@ -1,0 +1,20 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+LCID=0x419 0x0 0x0 ; Русский
+REPORT=Yes
+CHARSET=2
+CNT=Help.cnt
+HLP=help.hlp
+
+[FILES]
+помощь.rtf
+
+[WINDOWS]
+Help="Помощь",(100,100,350,500),61188,(r14876671),(r12632256),f7
+
+[CONFIG]
+BrowseButtons ()
+
+[FONTS]
+=,,204

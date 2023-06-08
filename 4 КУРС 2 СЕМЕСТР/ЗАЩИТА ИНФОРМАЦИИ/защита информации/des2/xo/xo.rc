@@ -1,0 +1,154 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_IC                  ICON    DISCARDABLE     "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_CUR                 CURSOR  DISCARDABLE     "cursor1.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&Игра"
+    BEGIN
+        MENUITEM "&Начать",                     ID_GAME_NEW
+        MENUITEM "&Опции",                      ID_GAME_Option
+        MENUITEM "В&ыход",                      ID_GAME_EXIT
+    END
+    POPUP "&Тип игры"
+    BEGIN
+        POPUP "К&рестики"
+        BEGIN
+            MENUITEM "Игра с &другом",              ID_Tip_Two
+            MENUITEM "Игра с &компом",              ID_Tip_Comp
+        END
+        POPUP "&Нолики"
+        BEGIN
+            MENUITEM "Игра с д&ругом",              ID_Tip_TwoO
+            MENUITEM "Игра с к&омпом",              ID_Tip_CompO
+        END
+    END
+    POPUP "&Помощь"
+    BEGIN
+        MENUITEM "О &программе",                ID_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_Option DIALOG DISCARDABLE  0, 0, 134, 81
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Опции"
+FONT 10, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Размер Поля",IDC_STATIC,7,4,53,45,BS_CENTER | WS_GROUP
+    CONTROL         "15х15",IDC_15,"Button",BS_AUTORADIOBUTTON,15,23,37,11
+    CONTROL         "10х10",IDC_10,"Button",BS_AUTORADIOBUTTON,16,12,40,11
+    CONTROL         "19х19",IDC_19,"Button",BS_AUTORADIOBUTTON,15,35,37,11
+    PUSHBUTTON      "Согласен",IDC_Agree,7,51,50,14
+    PUSHBUTTON      "Не согласен",IDC_Disagree,66,51,50,14
+    GROUPBOX        "Размер Клетки",IDC_STATIC,62,4,61,45,WS_GROUP
+    CONTROL         "20*20 ",IDC_20,"Button",BS_AUTORADIOBUTTON,73,11,34,10
+    CONTROL         "25*25",IDC_25,"Button",BS_AUTORADIOBUTTON,73,23,33,10
+    CONTROL         "30*30",IDC_30,"Button",BS_AUTORADIOBUTTON,73,36,33,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_Option, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 127
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 74
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

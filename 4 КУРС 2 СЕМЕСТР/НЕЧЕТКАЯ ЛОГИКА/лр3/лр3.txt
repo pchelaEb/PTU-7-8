@@ -1,0 +1,321 @@
+1.
+x = (0:0.01:1)';
+y1=trapmf(x,[0 0.2 0.4 0.6]); 
+y2=trapmf(x,[0.2 0.5 0.6 0.9]);
+y3=[min(y1, y2)]; 
+subplot(2,2,1) //pchelkina
+plot2d(x,[y1 y2])
+subplot(2,2,4)
+plot2d(x,[y3])
+
+2.
+x = (0:0.01:1)';
+y1 = gauss2mf(x, [0.1 0.2 0.1 0.4]);
+y2 = gauss2mf(x, [0.15 0.6 0.1 0.8]);
+m = zeros(x);
+i1 = find(y1==1);
+i2 = find(y2==1);
+m(i1)=y2(i1);
+m(i2)=y1(i2);
+plot2d(x,[y1 y2 m]) //pchelkina
+
+3.
+x = (0:0.01:1)';
+y1 = gauss2mf(x, [0.05 0.25 0.08 0.4]);
+y2 = gauss2mf(x, [0.08 0.8 0.06 0.9]);
+m = ones(x); //pchelkina
+ind1 = find(clean(y1,1d-6,1d-5)==0);
+ind2 = find(clean(y2,1d-7,1d-7)==0);
+m(ind1)=y2(ind1);
+m(ind2)=y1(ind2);
+plot2d(x,[y1 y2 m]);
+
+4.
+x = (0:0.01:1)'; //pchelkina
+p=pimf(x,[0.1 0.5 0.7 1.0]);
+z=zmf(x,[0.2 0.4]);
+subplot(4,1,1)
+plot(x,p,'k')
+plot(x,z,'b')
+xgrid
+legend('p','z')
+subplot(4,1,2);
+y1=[min(p,z)];
+xgrid
+plot(x,y1)
+legend('min(p,z)')
+subplot(4,1,3); 
+y2=[max(p,z)];
+xgrid
+plot(x,y2)
+legend('max(p,z)') 
+subplot(4,1,4);
+y3=[max(p-z,0)];
+xgrid  
+plot(x,y3)
+legend('max(p-z,0)')
+
+5.
+s=smf(x,[0.6 0.8]);
+subplot(3,2,1);
+xgrid; //pchelkina
+plot(x,s)
+legend('s')
+subplot(3,2,2);
+y1=[1-s];
+xgrid;
+plot(x,y1)
+legend('1-smf')
+subplot(3,2,3);
+y2=[2*s];
+xgrid;
+plot(x,y2)
+legend('2*smf')
+subplot(3,2,4);
+y3=[s^2];
+xgrid;
+plot(x,y3)
+legend('smf^2')
+subplot(3,2,5);
+y4=[s^0.5];
+xgrid;
+plot(x,y4)
+legend('smf^0.5')
+subplot(3,2,6);
+y5=[s^5];
+xgrid;
+plot(x,y5)
+legend('smf^5')
+
+6.
+x = (0:0.01:1)';
+y1=smf(x,[0.3 0.7]);
+y2=zmf(x,[0.3 0.6]);
+subplot(4,2,1);
+xgrid; //pchelkina
+plot(x,[y1 y2])
+legend('smf','zmf',2, %t);
+
+subplot(4,2,2);
+xgrid;
+y3=[abs(y1-y2)]
+plot(x,[y1 y2 y3]);
+legend('smf','zmf','abs(s-z)',1, %t)
+
+subplot(4,2,3);
+xgrid;
+y4=[max(min(y1,1-y2),min(1-y1,y2))];
+plot(x,[y1 y2 y4]);
+legend('smf','zmf','dizyukt.sum ',1, %t);
+
+subplot(4,2,4)
+y5=[y2.*y1];
+plot2d(x,[y1 y2 y5])
+//xtitle("z.*s ","x","y(x)");
+xgrid
+legend('smf','zmf','z.*s ',1, %t);
+
+subplot(4,2,5)
+y6=[y1+y2-y1.*y2];
+plot2d(x,[y1 y2 y6])
+//xtitle("s+z-s.*z ","x","y(x)");
+xgrid
+legend('smf','zmf','s+z-s.*z ',1, %t);
+
+subplot(4,2,6)
+y7=[max(s+z-1,0)];
+plot2d(x,[y1 y2 y7])
+//xtitle("max(s+z-1,0) ","x","y(x)");
+xgrid
+legend('smf','zmf','max(s+z-1,0) ',1, %t);
+
+subplot(4,2,7)
+y8=[min((y1+y2),1)];
+plot2d(x,[y1 y2 y8])
+//xtitle("min((s+z),1) ","x","y(x)");
+xgrid
+legend('smf','zmf','min((s+z),1) ',1, %t);
+
+7.
+yt=trimf(x,[0.5 0.6 0.9]);
+x1=(0.5+0.6+0.9);
+y1=(0+1+0);
+x2=x1/3;
+y2= y1/3;
+plot(x, yt);
+plot(x2, y2, '.b');
+
+8.
+yt=trapmf(x,[0.2 0.5 0.6 0.9]);
+x1=(0.9+0.2)./2;
+y=0.5; //pchelkina
+plot(x, yt);
+plot(x1, y, '.b');
+
+9.
+y1 = gauss2mf(x, [0.07 0.2 0.14 0.5]);
+y2 = gaussmf(x, [0.07 0.3]); //pchelkina
+function y=error(x,r,ABCD)
+ y=r-gauss2mf(x,ABCD);
+endfunction
+function y=error2(x,r,AB)
+ y=r-gaussmf(x,AB)
+endfunction
+s=fsolve([0.1;0.6],list(error,0.8,[0.07 0.2 0.14 0.5]));
+s2=fsolve([0.2;0.3],list(error2,0.8,[0.07 0.3]));
+plot2d([0;s(1);s(1)],[0.8;0.8;0],style=5);
+plot2d([0;s(2);s(2)],[0.8;0.8;0],style=5);
+plot2d([0;s2(1);s2(1)],[0.8;0.8;0],style=5);
+plot2d([0;s2(2);s2(2)],[0.8;0.8;0],style=5);
+plot2d(x,[y1 y2], style=[color("blue"),color("green")]);
+xgrid
+
+10.
+x=[-10:0.05:0];
+z=exp(x); //pchelkina
+z1=1-exp(x);
+function y=c(x)
+ y=1-exp(x)-exp(x);
+endfunction
+cp=fsolve([-1],c);
+plot2d(cp,exp(cp),style=-9);
+plot2d([-10,cp;cp,cp],[exp(cp),exp(cp);exp(cp),0],style=[5,5]);
+plot(x, z, 'black');
+plot(x, z1, 'black');
+xgrid
+
+индивидуальное.
+1.
+x = (0:0.01:1)';
+y1=trapmf (x,[0.1 0.3 0.5 0.7]);
+y2=trimf(x,[0.1 0.2 0.6]); 
+y3=trimf(x,[0.4 0.7 0.9]);
+
+subplot(4,1,1)
+plot2d(x,[y1 y2 y3])
+xtitle("y1,y2,y3","x","y(x)");
+xgrid
+legend('y1','y2','y3',2, %t);
+
+subplot(4,1,2)
+c1=[min(y1,y2,y3)];
+plot2d(x, c1)
+xtitle("min(y1,y2,y3) ","x","y(x)");
+xgrid
+legend('min(y1,y2,y3)',1, %t);
+
+
+subplot(4,1,3)
+c2=[max(y1,y2,y3)];
+plot2d(x,c2);
+xtitle("max(y1,y2,y3) ","x","y(x)");
+xgrid
+legend('max(y1,y2,y3)',1, %t);
+
+subplot(4,1,4)
+c3=[max(y1-y2-y3,0)];
+plot2d(x,c3);
+xtitle("max(y1-y2-y3,0) ","x","y(x)");
+xgrid
+legend('max(y1-y2-y3,0)',1, %t);
+
+2.
+x = (0:0.01:1)'; //pchelkina
+s=psigmf(x,[15 0.6 -15 0.8]); 
+a=0.5;
+b=4;
+
+subplot(3,2,1)
+plot2d(x,[s])
+xtitle("psigmf","x","y(x)");
+xgrid
+legend('psigmf',2, %t);
+
+subplot(3,2,2)
+y=[1-s];
+plot2d(x, y)
+xtitle("1-psigmf","x","y(x)");
+xgrid
+legend('1-psigmf',1, %t);
+
+subplot(3,2,3)
+y1=[a*s];
+plot2d(x, y1)
+xtitle("a*psigmf","x","y(x)");
+xgrid
+legend('a*psigmf',1, %t);
+
+subplot(3,2,4)
+y2=[s^2];
+plot2d(x, y2)
+xtitle("psigmf^2","x","y(x)");
+xgrid
+legend('psigmf^2',1, %t);
+
+subplot(3,2,5)
+y3=[s^0.5];
+plot2d(x, y3)
+xtitle("psigmf^0.5 ","x","y(x)");
+xgrid
+legend('psigmf^0.5 ',1, %t);
+
+subplot(3,2,6)
+y4=[s^b];
+plot2d(x, y4)
+xtitle("psigmf^b ","x","y(x)");
+xgrid
+legend('psigmf^b ',1, %t);
+
+3.
+x = (0:0.01:1)'; //pchelkina
+s=trimf(x,[0.1 0.3 0.6]); 
+z=trapmf(x,[0.3 0.5 0.7 0.9]); 
+
+subplot(4,2,1)
+plot2d(x,[s z])
+xtitle("trimf,trapmf","x","y(x)");
+xgrid
+legend('trimf,trapmf',2, %t);
+
+subplot(4,2,2)
+y=[abs(s-z)];
+plot2d(x,[s z y])
+xtitle("abs(trimf-trapmf) ","x","y(x)");
+xgrid
+legend('trimf,trapmf','abs(trimf-trapmf)',1, %t)
+
+subplot(4,2,3)
+y3=[max(min(s,1-z),min(1-s,z))];
+plot2d(x,[s z y3])
+xtitle("dizyukt.sum","x","y(x)");
+xgrid
+legend('trimf,trapmf','dizyukt.sum',1, %t);
+
+subplot(4,2,4)
+y4=[z.*s];
+plot2d(x,[s z y4])
+xtitle("trimf.*trapmf","x","y(x)");
+xgrid
+legend('trimf,trapmf','trimf.*trapmf',1, %t);
+
+subplot(4,2,5)
+y5=[s+z-s.*z];
+plot2d(x,[s z y5])
+xtitle("trimf+trapmf-trimf.*trapmf","x","y(x)");
+xgrid
+legend('trimf,trapmf','trimf+trapmf-trimf.*trapmf',1, %t);
+
+subplot(4,2,6)
+y6=[max(s+z-1,0)];
+plot2d(x,[s z y6])
+xtitle("max(trimf+trapmf2-1,0) ","x","y(x)");
+xgrid
+legend('trimf,trapmf','max(trimf+trapmf-1,0) ',1, %t);
+
+subplot(4,2,7)
+y7=[min((s+z),1)];
+plot2d(x,[s z y7])
+xtitle("min((trimf+trapmf),1) ","x","y(x)");
+xgrid
+legend('trimf,trapmf','min((trimf+trapmf),1) ',1, %t);
+

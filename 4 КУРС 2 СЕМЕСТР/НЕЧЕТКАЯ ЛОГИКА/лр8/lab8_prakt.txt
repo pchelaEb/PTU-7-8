@@ -1,0 +1,309 @@
+ ans  =
+ 
+    1.  
+ 
+-->Tcore_low = 18; Tcore_high = 22; Hcore_low = 40; Hcore_high = 60;
+ 
+-->T_Set = (18:2:38);
+ 
+-->H_Set = (40:5:100);
+ 
+-->kT = 2.2; kH = 1;
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\R.sci', -1)
+ 
+-->matrixR = format('v', 5);
+ 
+-->matrixR = R(T_Set, H_Set, Tcore_low, Hcore_low, Tcore_high, Hcore_high, kT, kH) //pchelkina
+ matrixR  =
+ 
+    1.      1.      1.      1.      1.      0.91    0.82    0.73    0.64    0.55    0.46    0.38    0.29  
+    1.      1.      1.      1.      1.      0.89    0.80    0.71    0.62    0.53    0.44    0.35    0.26  
+    1.      1.      1.      1.      1.      0.86    0.77    0.69    0.60    0.51    0.42    0.33    0.24  
+    0.92    0.89    0.87    0.84    0.81    0.57    0.51    0.46    0.40    0.35    0.29    0.23    0.18  
+    0.84    0.82    0.79    0.76    0.74    0.52    0.46    0.41    0.35    0.30    0.24    0.18    0.13  
+    0.76    0.74    0.71    0.68    0.66    0.47    0.42    0.36    0.30    0.25    0.19    0.13    0.08  
+    0.69    0.66    0.63    0.61    0.58    0.42    0.37    0.31    0.25    0.20    0.14    0.08    0.03  
+    0.61    0.58    0.55    0.53    0.5     0.37    0.32    0.26    0.20    0.15    0.09    0.03    0.    
+    0.53    0.50    0.47    0.45    0.42    0.32    0.27    0.21    0.15    0.10    0.04    0.      0.    
+    0.45    0.42    0.40    0.37    0.34    0.27    0.22    0.16    0.10    0.05    0.      0.      0.    
+    0.37    0.34    0.32    0.29    0.26    0.22    0.17    0.11    0.06    0.      0.      0.      0.    
+ 
+-->hist3d(matrixR)
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\altha.sci', -1)
+ 
+-->C_altha_0_7 = altha(0.7, matrixR, T_Set, H_Set) //pchelkina
+ C_altha_0_7  =
+ 
+ 
+         column  1 to 14
+ 
+    18.    18.    18.    18.    18.    18.    18.    18.    20.    20.    20.    20.    20.    20.  
+    40.    45.    50.    55.    60.    65.    70.    75.    40.    45.    50.    55.    60.    65.  
+ 
+         column 15 to 28
+ 
+    20.    20.    22.    22.    22.    22.    22.    22.    22.    24.    24.    24.    24.    24.  
+    70.    75.    40.    45.    50.    55.    60.    65.    70.    40.    45.    50.    55.    60.  
+ 
+         column 29 to 36
+ 
+    26.    26.    26.    26.    26.    28.    28.    28.  
+    40.    45.    50.    55.    60.    40.    45.    50.  
+ 
+-->H = (140:1:190);
+ 
+-->M = (40:1:110);
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\NO.sci', -1)
+ 
+-->no = NO(H, M); 
+ 
+-->plot3d1(H, M, no)
+ 
+-->//pchelkina
+ 
+ 
+-->r1 = [0.8,1,0.7,0.6,0.9,0.9;1,0.7,0.5,0.4,0.7,0.5;0.5,0.9,1,0.9,0.8,1;0.6,0.8,0.2,0.5,0.3,0.4;0.3,0.4,0.7,0.7,0.6,0.8]
+ r1  =
+ 
+    0.8    1.     0.7    0.6    0.9    0.9  
+    1.     0.7    0.5    0.4    0.7    0.5  
+    0.5    0.9    1.     0.9    0.8    1.   
+    0.6    0.8    0.2    0.5    0.3    0.4  
+    0.3    0.4    0.7    0.7    0.6    0.8  
+ 
+-->r2 = [1,0.5,0.7,0.6;1,0.8,1,0.7;0.5,0.3,0.8,1;0.7,0.5,1,1;0.3,0.5,0.9,0.6;0.6,0.7,1,0.3]
+ r2  =
+ 
+    1.     0.5    0.7    0.6  
+    1.     0.8    1.     0.7  
+    0.5    0.3    0.8    1.   
+    0.7    0.5    1.     1.   
+    0.3    0.5    0.9    0.6  
+    0.6    0.7    1.     0.3  
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\maxmin.sci', -1)
+ 
+-->R1_R2 = maxmin(r1, r2) //pchelkina
+ R1_R2  =
+ 
+    1.     0.8    1.     0.7  
+    1.     0.7    0.7    0.7  
+    0.9    0.8    1.     1.   
+    0.8    0.8    0.8    0.7  
+    0.7    0.7    0.8    0.7  
+ 
+-->X = (0:0.1:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->X = (0:1:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->X = (0:10:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->X = (0:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->X = (0:5:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->MI = trimf([X, 0 25 50]);
+                         !--error 77 
+trimf: Неверное количество входных параметров: ожидалось 2.
+ 
+ 
+-->HI = trimf[X,30 100 100];
+             !--error 276 
+Пропущен оператор, запятая или точка с запятой.
+ 
+ 
+ 
+-->X = [0,100];
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->MI = trimf([X, 0 25 50]);
+                         !--error 77 
+trimf: Неверное количество входных параметров: ожидалось 2.
+ 
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->plot(X, LI, 'rd-', X, MI, 'bd:', X, HI, 'gd--') // pchelkina
+ 
+-->X = (0:0.1:100);
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->plot(X, LI, 'r', X, MI, 'b', X, HI, 'g') // pchelkina
+ 
+-->Y = (0:0.1:100);
+ 
+-->LC = trimf(Y, [0 0 30]);
+ 
+-->MC = trimf(Y,[0 30 60]);
+ 
+-->HC = trapmf(Y,[40 80 100 100]);
+ 
+-->plot(Y, LC, 'r', Y, MC, 'b', Y, HC, 'g');
+ 
+-->plot(Y, LC, 'r', Y, MC, 'b', Y, HC, 'g');
+ 
+-->legend('Lc(y)', 'Mc(y)', 'Hc(y)')
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["Lc(y)";"Mc(y)";"Hc(y)"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.71,0.13]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+ 
+-->//pchelkina
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\Tnorm.sci', -1)
+ 
+-->R1 = Tnorm(X,Y,LI,LC);
+ 
+-->R2 = Tnorm(X,Y,MI,MC);
+ 
+-->R3 = Tnorm(X,Y,HI,HC);
+ 
+-->R = max(R1, R2, R3); //pchelkina
+Внимание : переопределение функции : R                       . Выполните funcprot(0) для отключения этого сообщения
+ 
+-->R1 = Tnorm(X,Y,LI,LC);
+ 
+-->R2 = Tnorm(X,Y,MI,MC);
+ 
+-->R3 = Tnorm(X,Y,HI,HC);
+ 
+-->R = max(R1, R2, R3); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+ 
+-->plot3d(X, Y, R)
+ 
+-->plot3d(X, Y, R)
+ 
+-->X = [0:100];
+ 
+-->Y = [0:100];
+ 
+-->R1 = Tnorm(X,Y,LI,LC);
+ 
+-->R2 = Tnorm(X,Y,MI,MC);
+ 
+-->R3 = Tnorm(X,Y,HI,HC);
+ 
+-->R = max(R1, R2, R3); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\TKnorm.sci', -1)
+ 
+-->R = TKnorm(R1, R2, R3); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+                 !--error 999 
+plot3d1: Неверное значение входных параметров №2 и №3: несовместимая длина.
+ 
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр8\Tnorm.sci', -1)
+ 
+-->R = Tnorm(X,Y, LI, MI, HI, LC, MC, HC); //pchelkina
+                                       !--error 58 
+Неверное число входных параметров. 
+ 
+-->R = TNorm(X,Y, LI, MI, HI, LC, MC, HC); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+ 
+-->clar R
+  !--error 4 
+Неизвестная переменная: clar
+ 
+ 
+-->clear R
+ 
+-->R = TNorm(X,Y, LI, MI, HI, LC, MC, HC); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+ 
+-->LI = trimf(X,[0 0 25]);
+ 
+-->HI = trimf(X,[30 100 100]);
+ 
+-->MI = trimf(X,[0 25 50]);
+ 
+-->LC = trimf(Y, [0 0 30]);
+ 
+-->MC = trimf(Y,[0 30 60]);
+ 
+-->HC = trapmf(Y,[40 80 100 100]);
+ 
+-->R = TNorm(X,Y, LI, MI, HI, LC, MC, HC); //pchelkina
+ 
+-->plot3d1(X, Y, R)
+ 
+-->diary(0)

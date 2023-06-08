@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Ntilde;&agrave;&iuml;&aring;&eth;">
+		<param name="Name" value="Сапер_Вариант_№_1">
+		<param name="Local" value="mine1.html">
+		<param name="Name" value="Общие сведения">
+		<param name="Local" value="mine_object.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Ntilde;&acirc;&aring;&auml;&aring;&iacute;&egrave;&yuml;">
+		<param name="Name" value="Общие сведения">
+		<param name="Local" value="mine_object.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Iuml;&eth;&agrave;&acirc;&egrave;&euml;&agrave;">
+		<param name="Name" value="Правила игры">
+		<param name="Local" value="mine_play.html">
+		</OBJECT>
+</UL>
+</BODY></HTML>

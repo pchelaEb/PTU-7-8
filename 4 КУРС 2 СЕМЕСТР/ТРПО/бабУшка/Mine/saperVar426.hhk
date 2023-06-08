@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&yuml;&divide;&aring;&eacute;&ecirc;&agrave;">
+		<param name="Name" value="Общие сведения">
+		<param name="Local" value="mine_object.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&egrave;&atilde;&eth;&agrave;">
+		<param name="Name" value="Правила игры">
+		<param name="Local" value="mine_play.html">
+		<param name="Name" value="Приемы игры">
+		<param name="Local" value="mine_tips.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&egrave;&atilde;&eth;&icirc;&acirc;&icirc;&aring; &iuml;&icirc;&euml;&aring;">
+		<param name="Name" value="Настройка игрового поля">
+		<param name="Local" value="mine_customize_field.html">
+		<param name="Name" value="Правила игры">
+		<param name="Local" value="mine_play.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&divide;&aring;&igrave;&iuml;&egrave;&icirc;&iacute;&ucirc;">
+		<param name="Name" value="Чемпионы">
+		<param name="Local" value="champ.html">
+		</OBJECT>
+</UL>
+</BODY></HTML>

@@ -1,0 +1,313 @@
+ ans  =
+ 
+    1.  
+
+-->A = [0.0,0.2,0.4,0.5,0.5,0.7,0.8,0.8,0.9,1.0,1.0]
+ A  =
+ 
+    0.    0.2    0.4    0.5    0.5    0.7    0.8    0.8    0.9    1.    1.  
+ 
+-->B=[0.6,0.1,0.7,0.3,0.6,0.2,0.9,0.3,1.0,0.8,0.6]
+ B  =
+ 
+    0.6    0.1    0.7    0.3    0.6    0.2    0.9    0.3    1.    0.8    0.6  
+ 
+-->C=[0.3,0.7,0.5,0.9,0.6,1.0,0.9,0.3,0.5,1.0,1.0]
+ C  =
+ 
+    0.3    0.7    0.5    0.9    0.6    1.    0.9    0.3    0.5    1.    1.  
+ 
+-->x = [1:1:11]
+ x  =
+ 
+    1.    2.    3.    4.    5.    6.    7.    8.    9.    10.    11.  
+ 
+-->m = 11; h = 1;
+ 
+-->u = [1:1:11];
+ 
+-->A_=1-A;
+ 
+-->name = 'startsev'
+ name  =
+ 
+ startsev   
+ 
+
+-->D = min(A_,C)
+ D  =
+ 
+    0.3    0.7    0.5    0.5    0.5    0.3    0.2    0.2    0.1    0.    0.  
+ 
+-->E = max(B,C)
+ E  =
+ 
+    0.6    0.7    0.7    0.9    0.6    1.    0.9    0.3    1.    1.    1.  
+ 
+-->B_=1-B
+ B_  =
+ 
+    0.4    0.9    0.3    0.7    0.4    0.8    0.1    0.7    0.    0.2    0.4  
+ 
+-->F = min(A_,B_,C)
+ F  =
+ 
+    0.3    0.7    0.3    0.5    0.4    0.3    0.1    0.2    0.    0.    0.  
+ 
+-->G = min(A_,B,C)
+ G  =
+ 
+    0.3    0.1    0.5    0.3    0.5    0.2    0.2    0.2    0.1    0.    0.  
+ 
+-->name
+ name  =
+ 
+ startsev   
+  
+-->plot2d3(u,G,5)
+ 
+-->plot(u,G,'blue*')
+ 
+-->name
+ name  =
+ 
+ startsev   
+
+-->exec('D:\НелогичнаяЛогика\laba5\zFun.sci', -1)
+
+-->exec('D:\НелогичнаяЛогика\laba5\sFun.sci', -1)
+ 
+-->u = [0:0.01:10];
+ 
+-->B = trimf(u,[1 2 4]);
+ 
+-->C = trimf(u,[2 5 7]);
+ 
+-->A = zFun(u,[1 2]);
+ 
+-->D = sFun(x,[5 7]);
+ 
+-->plot(u,A,'r')
+ 
+-->plot(u,B,'blue:')
+ 
+-->plot(u,C,'green--')
+ 
+-->plot(u,D,'m-.')
+ 
+-->xgrid
+ 
+-->xtitle('Путь','ось x','ось y')
+ 
+-->legend('YA','YB','YC','YD',1,%t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["YA";"YB";"YC";"YD"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline","Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.7297131,0.1325]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+ 
+-->name
+ name  =
+ 
+ startsev 
+
+-->E = A'+B-A'.*B;
+ 
+-->F = 1 - E;
+ 
+-->G = F.*C;
+
+-->H = 1 - (C+D'-C.*D');
+ 
+-->I = E.*H;
+ 
+-->plot(u,E,'r');
+ 
+-->plot(u,F,'blue:');
+ 
+-->plot(u,G,'green--');
+ 
+-->plot(u,E,'r');
+ 
+-->plot(u,F,'blue:');
+ 
+-->plot(u,G,'green--');
+ 
+-->xgrid
+
+-->name
+ name  =
+ 
+ startsev
+
+-->legend('YE','YF','YG',1,%t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["YE";"YF";"YG"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.7280738,0.1325000]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+
+-->plot(u,H,'r');
+ 
+-->plot(u,I,'blue:');
+ 
+-->xgrid
+
+-->name
+ name  =
+ 
+ startsev
+
+-->legend('YH','YI',1,%t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["YH";"YI"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.7297131,0.1325000]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+
+-->v = intsplin(u);
+
+-->v = intsplin(u,u.*I);
+
+-->v = intsplin(u,u.*I) - 1.436;
+
+-->v = ((intsplin(u,u.*I)))/((intsplin(u,I))) - 1.436;
+
+-->v = ((intsplin(u,u.*I)))/((intsplin(u,I)));
+
+-->v
+ v  =
+ 
+    1.4361702 
+
+-->name
+ name  =
+ 
+ startsev
+
+-->exec('D:\НелогичнаяЛогика\laba5\sMin.sci', -1)
+
+-->exec('D:\НелогичнаяЛогика\laba5\sgn.sci', -1) 
+
+-->u = [0:0.01:10];
+ 
+-->y1 = trimf(u,[0 3 6]);
+ 
+-->y2 = trimf(u,[2 5 8]);
+ 
+-->sgn1 = sMin(y1,y2,0.1);
+ 
+-->sgn2 = sMin(y1,y2,0.5);
+ 
+-->sgn3 = sMin(y1,y2,2);
+ 
+-->min1 = min(y1,y2);
+ 
+-->plot(u,y1,'r');
+ 
+-->plot(u,y2,'blue:');
+ 
+-->plot(u,min1,'black');
+ 
+-->plot(u,sgn1,'green-.');
+ 
+-->plot(u,sgn2,'m--');
+ 
+-->plot(u,sgn3,'green');
+ 
+-->xgrid
+
+-->name
+ name  =
+ 
+ startsev
+ 
+-->legend('y1','y2','min','smin(0.1)','smin(0.5)','smin(2)',1,%t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["y1";"y2";"min";"smin(0.1)";"smin(0.5)";"smin(2)"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline","Polyline","Polyline","Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.6821721,0.1325000]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+
+-->name
+ name  =
+ 
+ startsev
+ 
+-->diary(0)

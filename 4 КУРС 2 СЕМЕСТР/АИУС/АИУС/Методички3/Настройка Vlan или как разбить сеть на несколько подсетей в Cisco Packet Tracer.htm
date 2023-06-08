@@ -1,0 +1,453 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+            <meta name="description" content="Настройка Vlan или как разбить сеть на несколько подсетей в Cisco Packet Tracer">
+        <meta name="keywords" content=" Vlan, Cisco Packet Tracer">
+  <link rel="canonical" href="http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/">
+  <link href="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/style.css" rel="stylesheet" type="text/css">
+
+    <title>Настройка Vlan или как разбить сеть на несколько подсетей в Cisco Packet Tracer</title>
+
+  <!--[if IE]>
+  <style type="text/css"> 
+  .twoColFixRtHdr #mainContent { zoom: 1; }
+  </style>
+  <![endif]-->
+
+<script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/watch_002.js" async="" type="text/javascript"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/code.js" async="" charset="UTF-8"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/collect.js" async="" charset="UTF-8"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/code.js" async="" charset="UTF-8"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/collect.js" async="" charset="UTF-8"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/watch.js" async="" type="text/javascript"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/pluso-like.js" async="" charset="UTF-8" type="text/javascript"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/embed.js" async="" type="text/javascript"></script><style type="text/css">.pluso{position:relative;z-index:1;display:inline-block;padding:0;-webkit-border-radius:22px;-moz-border-radius:22px;border-radius:22px;background:transparent;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso span{float:none;}
+.pluso-010010101001-06 a:active{ opacity:.6; }
+.pluso-010010101001-06 .pluso-wrap a{display:inline-block;vertical-align:inherit;margin:5px 0 0 5px;padding:0;width:40px;height:40px;background:url(http://share.pluso.ru/i/round/big/04.png) 0 0 transparent no-repeat;}
+.pluso-wrap{margin:0px !important;}
+.pluso-010010101001-06 .pluso-wrap{position:relative;z-index:1;display:inline-block;padding:0 5px 5px 0;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;background:#ebebeb;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso-010010101001-06 a.pluso-more{width:40px;height:40px;background:url(http://share.pluso.ru/i/plus.png) 0 -60px no-repeat!important;position:relative;}
+.pluso-010010101001-06 a.pluso-more{margin-right:-22px;*left:5px;}
+.pluso-010010101001-06 .pluso-counter b{position:relative;padding:8px 12px;-webkit-border-radius: 22px;-moz-border-radius: 22px;border-radius: 122px;background:#eaeaeb;box-shadow:0 0 3px rgba(0,0,0,.3);color:#707070;white-space:nowrap;font:16px/40px Tahoma, Geneva, sans-serif!important;}
+.pluso-010010101001-06 .pluso-counter{position:relative;padding-right:28px;}
+.pluso-010010101001-06 .pluso-counter b{top:-14px;left:28px;}
+.pluso-010010101001-06 .pluso-counter b:after{position: absolute;top: 13px;left: -8px;z-index: 0;display: block;width: 0;border-width: 5px 9px 5px 0;border-style: solid;border-color: transparent #eaeaeb;content: '';}
+.pluso-010010101001-06 br{ display:none; }
+.pluso-box{position:absolute;border:4px solid #eaebea;width:310px;height:225px;overflow:hidden;z-index: 777;background:#f2f2f2;font:normal normal 12px/25px Tahoma, Geneva, sans-serif;box-shadow:0 4px 10px rgba(0, 0, 0, 0.4);text-align:left;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;}
+.pluso-box a b{width:20px;height:20px;position:absolute;left:0;top:2px;}
+.pluso-box a:visited,.pluso-box a:hover,.pluso-box a{font:normal normal 12px/25px Tahoma, Geneva, sans-serif;color:#7f7f7f;text-decoration:none;white-space:nowrap;padding:0 0 0 25px;margin:0 0 0 5px;border:0;position:relative;width:115px;float:left;}
+.pluso-box .pluso-list{background:#ffffff;border-radius:14px;width:100%;height:200px;overflow:auto;position:absolute;left:0;top:25px;}
+.pluso-box a.pluso-logo{background:url(http://share.pluso.ru/i/logo-mini.png) 0 5px no-repeat;width:66px;height:19px;border:0;text-indent:-600em;padding:0 0 0 12px;margin:0 0 0 9px;}
+.pluso-box a.pluso-go{color:#4c4c4c;text-decoration:underline;padding-left:0;}
+.pluso-box a.pluso-close,.pluso-box a.pluso-close:hover,.pluso-box a.pluso-close:visited{float:right;width:20px;text-align:center;font-size:12px;line-height:20px;width:20px;margin:1px 1px 0 0;padding:0;font-weight:bold;color:#4c4c4c;text-decoration:none;background:#ffffff;border-radius:15px;border:1px solid #eaebea;}
+.pluso-box a.pluso-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-tip{cursor:pointer;position:absolute;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;white-space:nowrap;font:bold 14px/12px Tahoma, Geneva, sans-serif!important;color:#fff;background:#f78d1d;background:-webkit-gradient(linear, left top, left bottom, from(#7ed263), to(#3d9530));background:-webkit-linear-gradient(top,#7ed263,#3d9530);background:-moz-linear-gradient(top,#7ed263,#3d9530);background:-ms-linear-gradient(top,#7ed263,#3d9530);background:-o-linear-gradient(top,#7ed263,#3d9530);background:linear-gradient(top,#7ed263,#3d9530);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7ed263, endColorstr=#3d9530);box-shadow:0 0 5px rgba(0,0,0,.5), inset 0 0 0px 1px rgba(0,0,0,.3)}
+.pluso-tip:after{position:absolute;z-index:0;display:block;width:0;height:0;border-style: solid;content:''}
+.pluso-tip.pluso-left-arrow:after{top:40%;right:-6px;border-color:transparent #447b36;border-width:6px 0px 6px 6px}
+.pluso-tip.pluso-top-arrow:after{bottom:-6px;border-color:#27601f transparent;border-width:6px 6px 0px 6px}
+.pluso-tip.pluso-bottom-arrow:after{top:-6px;border-color:#447b36 transparent;border-width:0px 6px 6px 6px}
+@keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+@-webkit-keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+.pluso-overlay-background{height:100%;width:100%;position:fixed;left:0;top:0;z-index:999999999;background-color: rgb(0, 0, 0);background-color: rgba(0, 0, 0, 0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";padding:0;margin:0;}
+.pluso-overlay-box{width:910px;margin: 50px auto 0;overflow:hidden;height:85%;background-color: #f5f5f5;border:1px solid #c4c4c4;padding:0!important;text-align:left;box-shadow:0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;border-radius:10px;}
+a.pluso-overlay-close,a.pluso-overlay-close:hover,a.pluso-overlay-close:visited{position:absolute;left:50%;margin:0 0 0 442px;top:38px;width:26px;height:26px;text-align:center;font:normal 20px/22px Arial;padding:0;color:#878787;text-decoration:none;background:#ffffff;border-radius:26px;border:2px solid #c4c4c4;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+a.pluso-overlay-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-overlay-box div{margin:20px 0 0 0;padding:0 0 12px 0;border-bottom:1px solid #c4c4c4;}
+.pluso-overlay-box ul{list-style:none;margin:10px 0 10px 0px;padding:0;height:85%;overflow:auto;}
+.pluso-overlay-box li{width:210px;height:260px;background:#ffffff;border-radius:10px;border:none;float:left;padding:0;margin:0 0px 10px 10px;}
+.pluso-overlay-box li a{display:block;text-decoration:none;margin:0;padding:0;height:100%;overflow:hidden;position:relative;}
+.pluso-overlay-box li a span, .pluso-overlay-box li a:hover span{position: relative;width: 190px;height:150px;border:1px solid #c4c4c4;overflow:hidden;margin:10px auto 5px auto;padding:0;text-align:center;display:block;}
+.pluso-overlay-box li a:hover span{box-shadow:0 0 5px #c4c4c4;-webkit-box-shadow:0 0 5px #c4c4c4;border:1px solid #c4c4c4}
+.pluso-overlay-box li a em{font:normal bold 15px/20px Arial;float:left;color:#e86340;padding:0px 0 0 10px;margin:0;}
+.pluso-overlay-box li a em u{font:normal normal 12px/12px Arial;text-decoration:none;display:block;color:#eb6338;padding:0;margin:0;}
+.pluso-overlay-box li a strong{font:normal 11px/14px Arial;display:block;padding:0 10px;color:#454545;position:relative;bottom:auto;height:42px;width:180px;overflow:hidden;margin:0 0 5px 0;border:0;}
+.pluso-overlay-box li a:hover strong{height:42px;overflow:auto;padding:0 10px;border:0;}
+.pluso-overlay-box li a b, .pluso-overlay-box li a b:hover, .pluso-overlay-box li a b:active{font:bold normal 15px/18px Arial, sans-serif;color: #ffffff;padding-top: 7px;padding-right: 12px;padding-bottom: 7px;padding-left: 12px;text-decoration: none;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);-moz-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);text-shadow: 0px 1px 2px #3d8a33;border:solid #4bb543 1px;background:-webkit-gradient(linear, 0 0, 0 100%, from(#95e488), to(#20a517));background: -moz-linear-gradient(top, #95e488, #20a517);background: -o-linear-gradient(top, #95e488, #20a517);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);display:inline-block;float:right;bottom:auto;right:10px;position:relative;}
+.pluso-overlay-box li a b:hover{background:-webkit-gradient(linear, 0 0, 0 100%, from(#b1f4a3), to(#27c21c));background: -moz-linear-gradient(top, #b1f4a3, #27c21c);background:-o-linear-gradient(top, #b1f4a3, #27c21c);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);}
+.pluso-overlay-box li a b:active{background:-webkit-gradient(linear, 0 0, 0 100%, from(#20a517), to(#95e488));background: -moz-linear-gradient(top, #20a517, #95e488);background:-o-linear-gradient(top, #20a517, #95e488);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);}
+.pluso-010010101001-06 .pluso-wrap a{ background-image:url(http://share.pluso.ru/i/square/big/06.png) }.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart, .pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar, .pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb, .pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -84px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest, .pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag, .pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-box a b{ background-image:url(http://share.pluso.ru/i/round/small/04.png) }.pluso-box a.pluso-market b{ background:url(http://share.pluso.ru/i/round/small/market.png) -21px 0}.pluso-box a.pluso-vkontakte b{ background-position: -84px 0}.pluso-box a.pluso-odnoklassniki b{ background-position: -63px 0}.pluso-box a.pluso-facebook b{ background-position: -0px 0}.pluso-box a.pluso-twitter b{ background-position: -21px 0}.pluso-box a.pluso-google b{ background-position: -126px 0}.pluso-box a.pluso-moimir b{ background-position: -147px 0}.pluso-box a.pluso-pinterest b{ background-position: -105px 0}.pluso-box a.pluso-livejournal b{ background-position: -168px 0}.pluso-box a.pluso-tumblr b{ background-position: -42px 0}.pluso-box a.pluso-liveinternet b{ background-position: -189px 0}.pluso-box a.pluso-springpad b{ background-position: -210px 0}.pluso-box a.pluso-stumbleupon b{ background-position: -231px 0}.pluso-box a.pluso-myspace b{ background-position: -252px 0}.pluso-box a.pluso-formspring b{ background-position: -273px 0}.pluso-box a.pluso-blogger b{ background-position: -294px 0}.pluso-box a.pluso-digg b{ background-position: -315px 0}.pluso-box a.pluso-surfingbird b{ background-position: -336px 0}.pluso-box a.pluso-bobrdobr b{ background-position: -357px 0}.pluso-box a.pluso-readability b{ background-position: -378px 0}.pluso-box a.pluso-instapaper b{ background-position: -399px 0}.pluso-box a.pluso-evernote b{ background-position: -420px 0}.pluso-box a.pluso-delicious b{ background-position: -525px 0}.pluso-box a.pluso-vkrugu b{ background-position: -504px 0}.pluso-box a.pluso-pinme b{ background-position: -546px 0}.pluso-box a.pluso-yandex b{ background-position: -567px 0}.pluso-box a.pluso-yazakladki b{ background-position: -588px 0}.pluso-box a.pluso-moikrug b{ background-position: -609px 0}.pluso-box a.pluso-googlebookmark b{ background-position: -630px 0}.pluso-box a.pluso-yahoo b{ background-position: -651px 0}.pluso-box a.pluso-moemesto b{ background-position: -672px 0}.pluso-box a.pluso-memori b{ background-position: -693px 0}.pluso-box a.pluso-juick b{ background-position: -735px 0}.pluso-box a.pluso-linkedin b{ background-position: -756px 0}.pluso-box a.pluso-webdiscover b{ background-position: -798px 0}.pluso-box a.pluso-bookmark b{ background-position: -441px 0}.pluso-box a.pluso-email b{ background-position: -462px 0}.pluso-box a.pluso-print b{ background-position: -483px 0}.pluso-box a.pluso-webmoney b{ background-position: -924px 0}.pluso-box a.pluso-misterwong b{ background-position: -903px 0}.pluso-box a.pluso-friendfeed b{ background-position: -882px 0}.pluso-box a.pluso-market b{ background-position: --21px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-vkontakte{ background-position: -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-odnoklassniki{ background-position: -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-facebook{ background-position: -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-twitter{ background-position: -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-google{ background-position: -252px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-moimir{ background-position: -294px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-email{ background-position: -924px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-print{ background-position: -966px 0}</style><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/process.txt" async="" charset="UTF-8" type="text/javascript"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/xidx-master.js" id="xidx-ui" async="" charset="UTF-8" type="text/javascript"></script><script charset="UTF-8" async="" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/alfie.js"></script><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/embed_002.js" async="" type="text/javascript"></script><style type="text/css">.pluso{position:relative;z-index:1;display:inline-block;padding:0;-webkit-border-radius:22px;-moz-border-radius:22px;border-radius:22px;background:transparent;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso span{float:none;}
+.pluso-010010101001-06 a:active{ opacity:.6; }
+.pluso-010010101001-06 .pluso-wrap a{display:inline-block;vertical-align:inherit;margin:5px 0 0 5px;padding:0;width:40px;height:40px;background:url(http://share.pluso.ru/i/round/big/04.png) 0 0 transparent no-repeat;}
+.pluso-wrap{margin:0px !important;}
+.pluso-010010101001-06 .pluso-wrap{position:relative;z-index:1;display:inline-block;padding:0 5px 5px 0;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;background:#ebebeb;text-align:left;font-size:0;line-height:0;*display:inline;*zoom:1;}
+.pluso-010010101001-06 a.pluso-more{width:40px;height:40px;background:url(http://share.pluso.ru/i/plus.png) 0 -60px no-repeat!important;position:relative;}
+.pluso-010010101001-06 a.pluso-more{margin-right:-22px;*left:5px;}
+.pluso-010010101001-06 .pluso-counter b{position:relative;padding:8px 12px;-webkit-border-radius: 22px;-moz-border-radius: 22px;border-radius: 122px;background:#eaeaeb;box-shadow:0 0 3px rgba(0,0,0,.3);color:#707070;white-space:nowrap;font:16px/40px Tahoma, Geneva, sans-serif!important;}
+.pluso-010010101001-06 .pluso-counter{position:relative;padding-right:28px;}
+.pluso-010010101001-06 .pluso-counter b{top:-14px;left:28px;}
+.pluso-010010101001-06 .pluso-counter b:after{position: absolute;top: 13px;left: -8px;z-index: 0;display: block;width: 0;border-width: 5px 9px 5px 0;border-style: solid;border-color: transparent #eaeaeb;content: '';}
+.pluso-010010101001-06 br{ display:none; }
+.pluso-box{position:absolute;border:4px solid #eaebea;width:310px;height:225px;overflow:hidden;z-index: 777;background:#f2f2f2;font:normal normal 12px/25px Tahoma, Geneva, sans-serif;box-shadow:0 4px 10px rgba(0, 0, 0, 0.4);text-align:left;-webkit-border-radius:14px;-moz-border-radius:14px;border-radius:14px;}
+.pluso-box a b{width:20px;height:20px;position:absolute;left:0;top:2px;}
+.pluso-box a:visited,.pluso-box a:hover,.pluso-box a{font:normal normal 12px/25px Tahoma, Geneva, sans-serif;color:#7f7f7f;text-decoration:none;white-space:nowrap;padding:0 0 0 25px;margin:0 0 0 5px;border:0;position:relative;width:115px;float:left;}
+.pluso-box .pluso-list{background:#ffffff;border-radius:14px;width:100%;height:200px;overflow:auto;position:absolute;left:0;top:25px;}
+.pluso-box a.pluso-logo{background:url(http://share.pluso.ru/i/logo-mini.png) 0 5px no-repeat;width:66px;height:19px;border:0;text-indent:-600em;padding:0 0 0 12px;margin:0 0 0 9px;}
+.pluso-box a.pluso-go{color:#4c4c4c;text-decoration:underline;padding-left:0;}
+.pluso-box a.pluso-close,.pluso-box a.pluso-close:hover,.pluso-box a.pluso-close:visited{float:right;width:20px;text-align:center;font-size:12px;line-height:20px;width:20px;margin:1px 1px 0 0;padding:0;font-weight:bold;color:#4c4c4c;text-decoration:none;background:#ffffff;border-radius:15px;border:1px solid #eaebea;}
+.pluso-box a.pluso-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-tip{cursor:pointer;position:absolute;padding:10px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;white-space:nowrap;font:bold 14px/12px Tahoma, Geneva, sans-serif!important;color:#fff;background:#f78d1d;background:-webkit-gradient(linear, left top, left bottom, from(#7ed263), to(#3d9530));background:-webkit-linear-gradient(top,#7ed263,#3d9530);background:-moz-linear-gradient(top,#7ed263,#3d9530);background:-ms-linear-gradient(top,#7ed263,#3d9530);background:-o-linear-gradient(top,#7ed263,#3d9530);background:linear-gradient(top,#7ed263,#3d9530);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#7ed263, endColorstr=#3d9530);box-shadow:0 0 5px rgba(0,0,0,.5), inset 0 0 0px 1px rgba(0,0,0,.3)}
+.pluso-tip:after{position:absolute;z-index:0;display:block;width:0;height:0;border-style: solid;content:''}
+.pluso-tip.pluso-left-arrow:after{top:40%;right:-6px;border-color:transparent #447b36;border-width:6px 0px 6px 6px}
+.pluso-tip.pluso-top-arrow:after{bottom:-6px;border-color:#27601f transparent;border-width:6px 6px 0px 6px}
+.pluso-tip.pluso-bottom-arrow:after{top:-6px;border-color:#447b36 transparent;border-width:0px 6px 6px 6px}
+@keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+@-webkit-keyframes pluso-market-animate{0% { opacity:1 } 50%{ opacity:.3} 100% { opacity:1}}
+.pluso-overlay-background{height:100%;width:100%;position:fixed;left:0;top:0;z-index:999999999;background-color: rgb(0, 0, 0);background-color: rgba(0, 0, 0, 0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";padding:0;margin:0;}
+.pluso-overlay-box{width:910px;margin: 50px auto 0;overflow:hidden;height:85%;background-color: #f5f5f5;border:1px solid #c4c4c4;padding:0!important;text-align:left;box-shadow:0 4px 12px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.5) inset;border-radius:10px;}
+a.pluso-overlay-close,a.pluso-overlay-close:hover,a.pluso-overlay-close:visited{position:absolute;left:50%;margin:0 0 0 442px;top:38px;width:26px;height:26px;text-align:center;font:normal 20px/22px Arial;padding:0;color:#878787;text-decoration:none;background:#ffffff;border-radius:26px;border:2px solid #c4c4c4;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+a.pluso-overlay-close:hover{background:#7f7f7f;color:#ffffff;border-color:transparent}
+.pluso-overlay-box div{margin:20px 0 0 0;padding:0 0 12px 0;border-bottom:1px solid #c4c4c4;}
+.pluso-overlay-box ul{list-style:none;margin:10px 0 10px 0px;padding:0;height:85%;overflow:auto;}
+.pluso-overlay-box li{width:210px;height:260px;background:#ffffff;border-radius:10px;border:none;float:left;padding:0;margin:0 0px 10px 10px;}
+.pluso-overlay-box li a{display:block;text-decoration:none;margin:0;padding:0;height:100%;overflow:hidden;position:relative;}
+.pluso-overlay-box li a span, .pluso-overlay-box li a:hover span{position: relative;width: 190px;height:150px;border:1px solid #c4c4c4;overflow:hidden;margin:10px auto 5px auto;padding:0;text-align:center;display:block;}
+.pluso-overlay-box li a:hover span{box-shadow:0 0 5px #c4c4c4;-webkit-box-shadow:0 0 5px #c4c4c4;border:1px solid #c4c4c4}
+.pluso-overlay-box li a em{font:normal bold 15px/20px Arial;float:left;color:#e86340;padding:0px 0 0 10px;margin:0;}
+.pluso-overlay-box li a em u{font:normal normal 12px/12px Arial;text-decoration:none;display:block;color:#eb6338;padding:0;margin:0;}
+.pluso-overlay-box li a strong{font:normal 11px/14px Arial;display:block;padding:0 10px;color:#454545;position:relative;bottom:auto;height:42px;width:180px;overflow:hidden;margin:0 0 5px 0;border:0;}
+.pluso-overlay-box li a:hover strong{height:42px;overflow:auto;padding:0 10px;border:0;}
+.pluso-overlay-box li a b, .pluso-overlay-box li a b:hover, .pluso-overlay-box li a b:active{font:bold normal 15px/18px Arial, sans-serif;color: #ffffff;padding-top: 7px;padding-right: 12px;padding-bottom: 7px;padding-left: 12px;text-decoration: none;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;-webkit-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);-moz-box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);box-shadow: inset 0px -1px 2px rgba(255,255,255,.5);text-shadow: 0px 1px 2px #3d8a33;border:solid #4bb543 1px;background:-webkit-gradient(linear, 0 0, 0 100%, from(#95e488), to(#20a517));background: -moz-linear-gradient(top, #95e488, #20a517);background: -o-linear-gradient(top, #95e488, #20a517);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#95e488, endColorStr=#20a517);display:inline-block;float:right;bottom:auto;right:10px;position:relative;}
+.pluso-overlay-box li a b:hover{background:-webkit-gradient(linear, 0 0, 0 100%, from(#b1f4a3), to(#27c21c));background: -moz-linear-gradient(top, #b1f4a3, #27c21c);background:-o-linear-gradient(top, #b1f4a3, #27c21c);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#b1f4a3, endColorStr=#27c21c);}
+.pluso-overlay-box li a b:active{background:-webkit-gradient(linear, 0 0, 0 100%, from(#20a517), to(#95e488));background: -moz-linear-gradient(top, #20a517, #95e488);background:-o-linear-gradient(top, #20a517, #95e488);-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#20a517, endColorStr=#95e488);}
+.pluso-010010101001-06 .pluso-wrap a{ background-image:url(http://share.pluso.ru/i/square/big/06.png) }.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart, .pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-cart-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar, .pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-dollar-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb, .pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -84px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-bulb-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest, .pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-quest-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag, .pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{ background:url(http://share.pluso.ru/i/square/big/market.png) -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-market-tag-animate{animation: pluso-market-animate 3s linear infinite alternate;-webkit-animation: pluso-market-animate 3s linear infinite alternate;}.pluso-box a b{ background-image:url(http://share.pluso.ru/i/round/small/04.png) }.pluso-box a.pluso-market b{ background:url(http://share.pluso.ru/i/round/small/market.png) -21px 0}.pluso-box a.pluso-vkontakte b{ background-position: -84px 0}.pluso-box a.pluso-odnoklassniki b{ background-position: -63px 0}.pluso-box a.pluso-facebook b{ background-position: -0px 0}.pluso-box a.pluso-twitter b{ background-position: -21px 0}.pluso-box a.pluso-google b{ background-position: -126px 0}.pluso-box a.pluso-moimir b{ background-position: -147px 0}.pluso-box a.pluso-pinterest b{ background-position: -105px 0}.pluso-box a.pluso-livejournal b{ background-position: -168px 0}.pluso-box a.pluso-tumblr b{ background-position: -42px 0}.pluso-box a.pluso-liveinternet b{ background-position: -189px 0}.pluso-box a.pluso-springpad b{ background-position: -210px 0}.pluso-box a.pluso-stumbleupon b{ background-position: -231px 0}.pluso-box a.pluso-myspace b{ background-position: -252px 0}.pluso-box a.pluso-formspring b{ background-position: -273px 0}.pluso-box a.pluso-blogger b{ background-position: -294px 0}.pluso-box a.pluso-digg b{ background-position: -315px 0}.pluso-box a.pluso-surfingbird b{ background-position: -336px 0}.pluso-box a.pluso-bobrdobr b{ background-position: -357px 0}.pluso-box a.pluso-readability b{ background-position: -378px 0}.pluso-box a.pluso-instapaper b{ background-position: -399px 0}.pluso-box a.pluso-evernote b{ background-position: -420px 0}.pluso-box a.pluso-delicious b{ background-position: -525px 0}.pluso-box a.pluso-vkrugu b{ background-position: -504px 0}.pluso-box a.pluso-pinme b{ background-position: -546px 0}.pluso-box a.pluso-yandex b{ background-position: -567px 0}.pluso-box a.pluso-yazakladki b{ background-position: -588px 0}.pluso-box a.pluso-moikrug b{ background-position: -609px 0}.pluso-box a.pluso-googlebookmark b{ background-position: -630px 0}.pluso-box a.pluso-yahoo b{ background-position: -651px 0}.pluso-box a.pluso-moemesto b{ background-position: -672px 0}.pluso-box a.pluso-memori b{ background-position: -693px 0}.pluso-box a.pluso-juick b{ background-position: -735px 0}.pluso-box a.pluso-linkedin b{ background-position: -756px 0}.pluso-box a.pluso-webdiscover b{ background-position: -798px 0}.pluso-box a.pluso-bookmark b{ background-position: -441px 0}.pluso-box a.pluso-email b{ background-position: -462px 0}.pluso-box a.pluso-print b{ background-position: -483px 0}.pluso-box a.pluso-webmoney b{ background-position: -924px 0}.pluso-box a.pluso-misterwong b{ background-position: -903px 0}.pluso-box a.pluso-friendfeed b{ background-position: -882px 0}.pluso-box a.pluso-market b{ background-position: --21px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-vkontakte{ background-position: -168px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-odnoklassniki{ background-position: -126px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-facebook{ background-position: -0px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-twitter{ background-position: -42px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-google{ background-position: -252px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-moimir{ background-position: -294px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-email{ background-position: -924px 0}.pluso-010010101001-06 .pluso-wrap a.pluso-print{ background-position: -966px 0}</style><script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/process_002.txt" async="" charset="UTF-8" type="text/javascript"></script></head>
+
+<body>
+    <div id="container">
+	
+	<div id="header">
+  <div class="logo"></div>
+   
+    
+    <h2></h2>
+  
+  </div>
+	
+	
+        
+       <div id="topMenu">
+  
+    <ul>
+    	<li><a href="http://findotvet.ru/">Home</a></li>
+        <li>–</li>
+        <li><a href="http://findotvet.ru/about/">About me</a></li>
+        <li>–</li>
+     
+       
+        <li><a href="#">Contact</a></li>
+    </ul>
+  
+  </div>
+        
+		
+	
+	<div id="sidebar">
+  
+    <h3>Categories</h3>
+   
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/10"> Cisco CCIE</a> (28)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/11"> Cisco ICDN</a> (27)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/7"> Cisco Packet Tracer</a> (10)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/1"> django</a> (9)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/6"> GetSimple</a> (1)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/12"> iPhone</a> (4)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/2"> Linux</a> (2)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/8"> Seo</a> (10)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/9"> Web</a> (2)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/3"> Windows</a> (3)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/5"> Wordpress</a> (5)</li>
+                       
+                
+					
+                    <ul>
+                        <li><a href="http://findotvet.ru/category/4"> Блоговедение</a> (2)</li>
+                       
+                
+					
+        </ul>
+    <h3>Last posts</h3>
+   <ul>
+   
+					 <li><a href="http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/schetchik-postov-v-categorii" class="content-green-hover"> Счетчик постов в категории</a></li>
+					
+					 <li><a href="http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/kak-sdelat-sitemap-django" class="content-green-hover"> Как сделать sitemap на Django</a></li>
+					
+					 <li><a href="http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/prostoi-blog-na-django2" class="content-green-hover"> Простой блог на Django, часть 2.</a></li>
+					
+					 <li><a href="http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/simple-blog-django" class="content-green-hover"> Простой блог на Django</a></li>
+					
+    </ul>
+	
+	<h3>Last comments</h3>
+     <ul>
+			 <li>		<div id="dsq-recent-comments" class="dsq-widget">
+<script type="text/javascript">
+
+	var disqus_shortname = 'findotvet';
+
+
+</script>
+<script src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/recent_comments_widget.js">
+</script> <style type="text/css" media="screen">	 .dsq-widget ul.dsq-widget-list {	 padding: 0;	 margin: 0;	 text-align: left;	 }	 img.dsq-widget-avatar {	 width: 32px;	 height: 32px;	 border: 0px;	 margin: 0px;	 padding: 0px 3px 3px 0px;	 float: left;	 }	 a.dsq-widget-user {	 font-weight: bold;	 }	 a.dsq-widget-thread {	 font-weight: bold;	 }	 p.dsq-widget-meta {	 clear: both;	 font-size: 80%;	 padding: 0;	 margin: 0;	 }	 li.dsq-widget-item {	 margin: 15px 0;	 list-style-type: none;	 clear: both;	 }	 span.dsq-widget-clout {	 padding: 0 2px;	 background-color: #ff7300;	 color: #fff;	 }	 table.dsq-widget-horiz td {	 padding-right: 15px;	 }	 .dsq-widget-comment p {	 display: inline;	 }	 </style>	 <ul class="dsq-widget-list">	 <li class="dsq-widget-item">	 <a href="http://disqus.com/guest/fc9b68f93a9178a35c8651f41b520c4e/"><img class="dsq-widget-avatar" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/noavatar92_002.png"></a>	 <a class="dsq-widget-user dsq-unregistered-user" href="http://disqus.com/guest/fc9b68f93a9178a35c8651f41b520c4e/">Санек</a>	 <span class="dsq-widget-comment"><p>Хорошая статья, спасибо.</p></span>	 <p class="dsq-widget-meta"><a href="http://findotvet.ru/ustranenie-nepoladok-ospf/"> Устранение неполадок OSPF </a>&nbsp;·&nbsp;<a href="http://findotvet.ru/ustranenie-nepoladok-ospf/#comment-988993179">3 weeks ago</a></p>	 </li>	 </ul> <style type="text/css" media="screen">	 .dsq-widget ul.dsq-widget-list {	 padding: 0;	 margin: 0;	 text-align: left;	 }	 img.dsq-widget-avatar {	 width: 32px;	 height: 32px;	 border: 0px;	 margin: 0px;	 padding: 0px 3px 3px 0px;	 float: left;	 }	 a.dsq-widget-user {	 font-weight: bold;	 }	 a.dsq-widget-thread {	 font-weight: bold;	 }	 p.dsq-widget-meta {	 clear: both;	 font-size: 80%;	 padding: 0;	 margin: 0;	 }	 li.dsq-widget-item {	 margin: 15px 0;	 list-style-type: none;	 clear: both;	 }	 span.dsq-widget-clout {	 padding: 0 2px;	 background-color: #ff7300;	 color: #fff;	 }	 table.dsq-widget-horiz td {	 padding-right: 15px;	 }	 .dsq-widget-comment p {	 display: inline;	 }	 </style>	 <ul class="dsq-widget-list">	 <li class="dsq-widget-item">	 <a href="http://disqus.com/guest/fc9b68f93a9178a35c8651f41b520c4e/"><img class="dsq-widget-avatar" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/noavatar92.png"></a>	 <a class="dsq-widget-user dsq-unregistered-user" href="http://disqus.com/guest/fc9b68f93a9178a35c8651f41b520c4e/">Санек</a>	 <span class="dsq-widget-comment"><p>Хорошая статья, спасибо.</p></span>	 <p class="dsq-widget-meta"><a href="http://findotvet.ru/ustranenie-nepoladok-ospf/"> Устранение неполадок OSPF </a>&nbsp;·&nbsp;<a href="http://findotvet.ru/ustranenie-nepoladok-ospf/#comment-988993179">3 weeks ago</a></p>	 </li>	 </ul>
+</div>
+  </li>
+    </ul>
+    </ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></ul></div>
+	
+   
+
+  <div id="mainContent">
+  	
+    <div class="blogItem">
+    	
+        <h1> Настройка Vlan или как разбить сеть на несколько подсетей в Cisco Packet Tracer </h1>
+        <p></p><p>Здравствуйте читатели моего блога. Вот уже 
+приближаются праздники, совсем скоро рождество у католиков, если среди 
+вас они имеются, то я вас непременно поздравляю с сочельником. Сегодня я
+ вам расскажу<strong>&nbsp;как настроить vlan на коммутаторе в Cisco Packet Tracer</strong>,
+ вернее как их настраивать на оборудовании от cisco. Как повелось по 
+традиции вся работа по настройке будет проходить в программе Cisco 
+Packet Tracer. Кто еще не знает, что это за программа обязательно 
+почитайте, это просто палочка выручалочка для тех у кого нет возможности
+ поиграться с реальным оборудованием.</p>
+<p>&nbsp;</p>
+<p>Давно я обещал написать статью о<strong>&nbsp;настройке не большой сети в Cisco Packet Tracer</strong>,
+ но как то все откладывал, теперь пришел тот час когда я добрался до это
+ замечательной программы. Сейчас больше времени уделяю другим рубрикам 
+своего блога, рубрика сетевых технологий осталась без внимания, надо 
+отдать ей должное.</p>
+<p>Сразу давайте разберемся&nbsp;<a title="Маршрутизация между  VLAN" href="http://findotvet.ru/marshrutizaciya-mezhdu-vlan/">что такое Vlan</a>?
+ Кто еще не вкурсе могут прочитать в моей статье, ну я тем не менее 
+напомню всем, что Vlan — это виртуальная локальная сеть, компоненты, 
+(ПК, ноутбуки, телефоны) которой не обязательно находятся в одном 
+физическом сегменте. Поясню, с помощью Vlan два компьютера могут быть 
+объединены&nbsp;в локальную сеть даже если один из них в Москве, а 
+другой в Питере.</p>
+<h3>Настройка Vlan в Cisco Packet Tracer</h3>
+<p>А на примере будем разбирать простую локальную сеть состоящую из семи
+ компьютеров и одного сервера. Общая картина сети будет выглядеть так:</p>
+<p><a href="http://findotvet.ru/wp-content/uploads/2012/12/ICND1_Vol1_RUS_img_3638.jpg"><img class="aligncenter size-large wp-image-1006" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/ICND1_Vol1_RUS_img_3638-1024x609.jpg" alt="Настройка Vlan в Cisco Packet Tracer" height="297" width="500"></a></p>
+<p>&nbsp;</p>
+<p>конечно каждый может добавить необходимые элементы по вкусу, у меня общая схема, без промежуточных коммутаторов уровня доступа.</p>
+<p>У нас имеется 7 хостов, 1 сервер, три коммутатора уровня распределения и один центральный<a title="Коммутаторы и коммутация сети." href="http://findotvet.ru/kommutatory-i-kommutaciya-seti/">коммутатор</a>, и все это делится на три&nbsp;<a title="Подсети, маска подсети и расчет подсети." href="http://findotvet.ru/podseti-maska-podseti-i-raschet-podseti/">подсети</a>, которые я выделил разным цветом.</p>
+<h6>Наша задача:</h6>
+<p>Разделить эти 7 хостов и сервер на три подсети так, чтобы эти подсети не видели друг друга, но все имели доступ к серверу.&nbsp;<strong>Настройка Vlan на коммутаторе cisco</strong>&nbsp;это дело 5-10 минут, так, что особо не переживаем.</p>
+<p>Ниже я представлю свой&nbsp;<strong>вариант настройки сети в Cisco Packet Tracer</strong>, со всеми ip адресами. Да и сразу хочу отметить, что все настройки буду производить ручками, без всяких там&nbsp;<a title="Cisco DHCP" href="http://findotvet.ru/cisco-dhcp/">DHCP</a>, хотя с ним и удобнее, но это в следующий раз.</p>
+<p><a href="http://findotvet.ru/wp-content/uploads/2012/12/ICND1_Vol1_RUS_img_3644.jpg"><img class="aligncenter size-large wp-image-1016" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/ICND1_Vol1_RUS_img_3644-1024x586.jpg" alt="Как настроить Vlan на коммутаторе в Cisco Packet Tracer" height="286" width="500"></a></p>
+<p>Так выглядит окончательная схема сети с ip адресами и портами.</p>
+<h3>Настройка хостов в Cisco Packet Tracer</h3>
+<p>Теперь перейдем собственно к настройке, начнем с настройки хостов и 
+сервера. На скрине видно, какие ip адреса я дал своим хостам и серверу, 
+вы можете повторить за мной, либо назначить свои, главное не запутаться.
+ Записывайте все конфиги либо как я на скрине чуть ниже, либо в 
+блокноте, это очень экономит время. IP адреса я выбрал из десятой 
+подсети, мне так удобно, маску подсети взял 255.255.255.0. Как 
+настраивать хосты я описывал в прошлой статье, но для тех кто не читал и
+ не хочет я напомню.</p>
+<p>Чтобы попасть в меню в окно настроек хоста просто нажмите по нему 
+левой кнопкой мыши, затем переходите в раздел Config, выберите интерфейс
+ ( в нашем случае FastEthernet) и в нужных полях вбиваем адреса.</p>
+<p><a href="http://findotvet.ru/wp-content/uploads/2012/12/ICND1_Vol1_RUS_img_3640.jpg"><img class="aligncenter size-full wp-image-1008" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/ICND1_Vol1_RUS_img_3640.jpg" alt="Настройка хоста в cisco packet tracer" height="397" width="500"></a></p>
+<p>&nbsp;</p>
+<p>Ничего сложного как видите. Обратите внимание, что по умолчание будет стоять маска 255.0.0.0, смело меняем ее на 255.255.255.0.</p>
+<p>Разобравшись с настройкой хостов можно приступать к следующему этапу.</p>
+<h3>Настройка Vlan на центральном коммутаторе в Cisco Packet Tracer</h3>
+<p>Теперь настроим наш коммутатор, который на скрине изображен как 
+Switch 3. Настраивать его будем через CLI ( командная строка для тех кто
+ не в курсе). Для тех кто не знаком с командами советую ознакомится с 
+моей рубрикой Cisco ICDN. Напоминаю, для того чтобы попасть в CLI нужно 
+нажать на коммутатор и выбрать закладку CLI.</p>
+<blockquote>
+<p>Switch3&gt;en<br>Switch3#conf t<br>Switch3(config)#vlan 10<br>Switch3(config-vlan)#name VLAN10<br>Switch3(config-vlan)#exit</p>
+</blockquote>
+<p>&nbsp;</p>
+<p><a href="http://findotvet.ru/wp-content/uploads/2012/12/ICND1_Vol1_RUS_img_3641.jpg"><img class="aligncenter size-full wp-image-1009" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/ICND1_Vol1_RUS_img_3641.jpg" alt="Настройка коммутатора в Cisco Packet Tracer" height="397" width="500"></a></p>
+<p>&nbsp;</p>
+<p>Все, что я сейчас описал проделываем для каждой VLAN.</p>
+<blockquote>
+<p>Switch3(config)#vlan 11<br>Switch3(config-vlan)#name VLAN11<br>Switch3(config-vlan)#exit</p>
+</blockquote>
+<p>И последнее</p>
+<blockquote>
+<p>Switch3(config)#vlan 12<br>Switch3(config-vlan)#name VLAN12<br>Switch3(config-vlan)#exit</p>
+</blockquote>
+<p>Теперь нам нужно настроить протокол VLAN Trunking Protocol. Этот протокол распределяет VLAN по всем коммутаторам в сети.</p>
+<h3>Настройка VTP и Trunk на коммутаторе в Cisco Packet Tracer</h3>
+<p>Настройка VTP проходит следующим образом:</p>
+<blockquote>
+<p>Switch3(config)#vtp domain Findotvet<br>Changing VTP domain name from NULL to Findotvet<br>Switch3(config)#vtp password Findotvet<br>Setting device VLAN database password to Findotvet<br>Switch3(config)#vtp mode server<br>Device mode already VTP SERVER.</p>
+</blockquote>
+<p>Все наш протокол готов к использованию. По плану настройка Trunk:</p>
+<blockquote>
+<p>Switch3(config)#int fa0/1<br>Switch3(config-if)#switchport trunk encapsulation dot1q<br>Switch3(config-if)#switchport mode trunk<br>Switch3(config-if)#exit</p>
+<p>Switch(config)#int fa0/2<br>Switch(config-if)#switchport trunk encapsulation dot1q<br>Switch(config-if)#switchport mode trunk<br>Switch(config-if)#exit</p>
+<p>Switch(config)#int fa0/3<br>Switch(config-if)#switchport trunk encapsulation dot1q<br>Switch(config-if)#switchport mode trunk<br>Switch(config-if)#exit</p>
+</blockquote>
+<p>На коммутаторе транковые интерфейсы будут пропускать через себя 
+только трафик с маркером Vlan. Интерфейсы конечных коммутаторов нужно 
+выставить в режим access, который будет пропускать только конкретный 
+Vlan. И так идем далее и настраиваем коммутатор, который связан с 
+сервером непосредственно (у меня это Switch2):</p>
+<blockquote>
+<p>Switch2&gt;en<br>Switch2#conf t<br>Switch2(config)#int fa0/4<br>Switch2(config-if)#switchport access vlan 10<br>Switch2(config-if)#switchport mode access<br>Switch2(config-if)#no sh</p>
+</blockquote>
+<p>Теперь настроим клиента для протокола VTP</p>
+<blockquote>
+<p>Switch2(config)#vtp domain Findotvet<br>Domain name already set to Findotvet.<br>Switch2(config)#vtp password Findotvet<br>Setting device VLAN database password to Findotvet<br>Switch2(config)#vtp mode client<br>Setting device to VTP CLIENT mode.</p>
+</blockquote>
+<p>Сделать это нужно будет для каждого коммутатора кроме центрального. 
+После этой процедуры протокол загрузит таблицы VLAN на коммутатор.</p>
+<p>Настроим остальные порты этого коммутатора:</p>
+<blockquote>
+<p>Switch2(config)#int fa0/3<br>Switch2(config-if)#switchport access vlan 12<br>Switch2(config-if)#switchport mode access<br>Switch2(config-if)#no sh<br>Switch2(config-if)#exit<br>Switch2(config)#int fa0/1<br>Switch2(config-if)#switchport access vlan 12<br>Switch2(config-if)#switchport mode access<br>Switch2(config-if)#no sh<br>Switch2(config-if)#exit<br>Switch2(config)#int fa0/2<br>Switch2(config-if)#switchport access vlan 12<br>Switch2(config-if)#switchport mode access<br>Switch2(config-if)#no sh<br>Switch2(config-if)#exit</p>
+</blockquote>
+<p>Ну вот и все, один Vlan на одном коммутаторе настроен, можете 
+попинговать хосты с этого Vlan. Теперь все тоже самое делаем для 
+остальных коммутаторов. Я не буду описывать все это, надеюсь сами 
+разберетесь, делаем все по аналогии настройки этого коммутатора, так же ,
+ только с указание своих Vlan. После того как все настроите пропингуйте 
+узлы и посмотрите что получится. Узлы каждой Vlan пингуют только друг 
+друга, остальных они не видят как и планировалось.</p>
+<p><a href="http://findotvet.ru/wp-content/uploads/2012/12/ICND1_Vol1_RUS_img_3642.jpg"><img class="aligncenter size-full wp-image-1010" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/ICND1_Vol1_RUS_img_3642.jpg" alt="Vlan в действии" height="397" width="500"></a></p>
+<p>Как видно, у меня так и есть. Приступим к настройке маршрутизации на центральном коммутаторе</p>
+<h3>Настройка маршрутизации в Cisco Packet Tracer</h3>
+<p>На центральном коммутаторе настроим интерфейсы, отдельно для каждой Vlan:</p>
+<blockquote>
+<p>Switch3#conf t<br>Enter configuration commands, one per line. End with CNTL/Z.<br>Switch3(config)#int vlan 10</p>
+<p>%LINK-5-CHANGED: Interface Vlan10, changed state to up</p>
+<p>%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up<br>Switch3(config-if)#ip address 10.0.10.1 255.255.255.0<br>Switch3(config-if)#no sh<br>Switch3(config-if)#exit<br>Switch3(config)#int vlan 11</p>
+<p>%LINK-5-CHANGED: Interface Vlan11, changed state to up</p>
+<p>%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan11, changed state to up<br>Switch3(config-if)#ip address 10.0.11.1 255.255.255.0<br>Switch3(config-if)#no sh<br>Switch3(config-if)#exit<br>Switch(config)#int vlan 12</p>
+<p>%LINK-5-CHANGED: Interface Vlan12, changed state to up</p>
+<p>%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan12, changed state to up<br>Switch3(config-if)#ip address 10.0.12.1 255.255.255.0<br>Switch3(config-if)#no sh<br>Switch3(config-if)#exit<br>Switch3(config)#int vlan 13</p>
+<p>%LINK-5-CHANGED: Interface Vlan13, changed state to up</p>
+<p>%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan13, changed state to up<br>Switch3(config-if)#ip address 10.0.13.1 255.255.255.0<br>Switch3(config-if)#no sh<br>Switch3(config-if)#exit</p>
+<p>Switch(config)#ip routing</p>
+</blockquote>
+<p>Все готово, проверяем доступность каждого узла. Если все хосты 
+пингуются значит все ровно. Теперь спрячем их друг от друга создав 
+правила:</p>
+<blockquote>
+<p>Switch(config)#ip access-list extended 100<br>Switch(config-ext-nacl)#permit ip any 10.0.10.0 0.0.0.255<br>^<br>% Invalid input detected at ‘^’ marker.</p>
+<p>Switch(config-ext-nacl)#permit ip any 10.0.10.0 0.0.0.255<br>Switch(config-ext-nacl)#permit ip 10.0.10.0 0.0.0.255 any<br>Switch(config-ext-nacl)#permit ip 10.0.11.0 0.0.0.255 10.0.11.0 0.0.0.255<br>Switch(config-ext-nacl)#permit ip 10.0.12.0 0.0.0.255 10.0.12.0 0.0.0.255<br>Switch(config-ext-nacl)#permit ip 10.0.13.0 0.0.0.255 10.0.13.0 0.0.0.255<br>Switch(config-ext-nacl)#exit<br>Switch(config)#int vlan 10<br>Switch(config-if)#ip access-group 100 in<br>Switch(config-if)#exit<br>Switch(config)#int vlan 11<br>Switch(config-if)#ip access-group 100 in<br>Switch(config-if)#exit<br>Switch(config)#int vlan 12<br>Switch(config-if)#ip access-group 100 in<br>Switch(config-if)#exit<br>Switch(config)#int vlan 13<br>Switch(config-if)#ip access-group 100 in<br>Switch(config-if)#exit<br>Switch(config)#exit</p>
+</blockquote>
+<p>Вот и все, теперь наш сервер доступен всем, а подсети закрыты 
+Vlan-ами. Наслаждаемся результатом и гордимся проделанной работой, потом
+ сохраняем проект если кому нужно и идем отмечать админский опыт.)</p><p></p>
+		  Авг. 3, 2013  
+     
+     
+	 <script type="text/javascript">(function() {
+          if (window.pluso)if (typeof window.pluso.start == "function") return;
+          var d = document, s = d.createElement('script'), g = 'getElementsByTagName';
+          s.type = 'text/javascript'; s.charset='UTF-8'; s.async = true;
+          s.src = ('https:' == window.location.protocol ? 'https' : 'http')  + '://share.pluso.ru/pluso-like.js';
+          var h=d[g]('head')[0] || d[g]('body')[0];
+          h.appendChild(s);
+          })();</script>
+        <div class="pluso" data-options="big,square,line,horizontal,counter,theme=06" data-services="vkontakte,odnoklassniki,facebook,twitter,google,moimir,email,print" data-background="#ebebeb"><div class="pluso-010010101001-06"><span class="pluso-wrap" style="background:#ebebeb"><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="ВКонтакте" class="pluso-vkontakte"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Одноклассники" class="pluso-odnoklassniki"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Facebook" class="pluso-facebook"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Twitter" class="pluso-twitter"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Google+" class="pluso-google"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Мой Мир@Mail.Ru" class="pluso-moimir"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Отправить на email" class="pluso-email"></a><a href="file:///C:/Documents%20and%20Settings/AAS/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%9C%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%BA%D0%B8/%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer.htm" title="Печатать" class="pluso-print"></a><a href="http://pluso.ru/" class="pluso-more"></a></span><span class="pluso-counter"><b title="0">0</b></span></div></div>
+    </div><!-- end #blogItem -->
+    
+
+
+ <div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="%D0%9D%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0%20Vlan%20%D0%B8%D0%BB%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D1%80%D0%B0%D0%B7%D0%B1%D0%B8%D1%82%D1%8C%20%D1%81%D0%B5%D1%82%D1%8C%20%D0%BD%D0%B0%20%D0%BD%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D0%BF%D0%BE%D0%B4%D1%81%D0%B5%D1%82%D0%B5%D0%B9%20%D0%B2%20Cisco%20Packet%20Tracer_files/a.htm" style="width: 100%; border: medium none; overflow: hidden; height: 75px;" role="complementary" allowtransparency="true" data-disqus-uid="1" id="dsq1" frameborder="0" scrolling="no" width="100%"></iframe></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+
+	var disqus_shortname = 'findotvet';
+
+
+	/* * * DON'T EDIT BELOW THIS LINE * * */
+	(function() {
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+/* ]]> */
+</script>
+
+
+
+  
+  </div>
+
+	
+
+ 
+ <div class="clearfloat"></div>
+
+  <div id="footer">
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter17903668 = new Ya.Metrika({id:17903668,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/17903668" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    <p>Copyright © findotvet.ru | Contact | <a href="http://kmv-it.ru/" title="web-programming">kmv-it.ru</a></p>
+    
+  </div><!-- end #footer -->
+
+
+ 
+ </div><!-- end #container -->
+
+</body></html>

@@ -1,0 +1,266 @@
+ ans  =
+ 
+    1.  
+ 
+-->U = [1:1:11];
+ 
+-->A = [0.0, 0.2, 0.4, 0.5, 0.7, 0.8, 0.9, 1, 1];
+ 
+-->B = [0.6, 0.1, 0.7, 0.3, 0.6, 0.2, 0.9, 0.3, 1, 0.8, 0.6];
+ 
+-->C = [0.3, 0.7, 0.5, 0.9, 0.6, 1, 0.9, 0.3, 0.5, 1, 1];
+ 
+-->m = 11; h =1;
+ 
+-->D = [min((1 - A), C)];
+                     !--error 42 
+Несовместимый входной параметр.
+ 
+ 
+-->A1 = 1 - A
+ A1  =
+ 
+    1.    0.8    0.6    0.5    0.3    0.2    0.1    0.    0.  
+ 
+-->D = max(A1, C);
+               !--error 42 
+Несовместимый входной параметр.
+ 
+ 
+-->c
+  !--error 4 
+Неизвестная переменная: c
+ 
+ 
+-->C
+ C  =
+ 
+ 
+         column 1 to 9
+ 
+    0.3    0.7    0.5    0.9    0.6    1.    0.9    0.3    0.5  
+ 
+         column 10 to 11
+ 
+    1.    1.  
+ 
+-->A = [0.0, 0.2, 0.4, 0.5, 0.5, 0.7, 0.8, 0.8, 0.9, 1, 1];
+ 
+-->B = [0.6, 0.1, 0.7, 0.3, 0.6, 0.2, 0.9, 0.3, 1, 0.8, 0.6];
+ 
+-->C = [0.3, 0.7, 0.5, 0.9, 0.6, 1, 0.9, 0.3, 0.5, 1, 1]; //pchelkina
+ 
+-->D = [max((1 - A), C)];
+ 
+-->D
+ D  =
+ 
+ 
+         column  1 to 10
+ 
+    1.    0.8    0.6    0.9    0.6    1.    0.9    0.3    0.5    1.  
+ 
+         column 11
+ 
+    1.  
+ 
+-->D = [min((1 - A), C)]
+ D  =
+ 
+ 
+         column 1 to 9
+ 
+    0.3    0.7    0.5    0.5    0.5    0.3    0.2    0.2    0.1  
+ 
+         column 10 to 11
+ 
+    0.    0.  
+ 
+-->E = [max(B, C)] //pchelkina
+ E  =
+ 
+ 
+         column  1 to 10
+ 
+    0.6    0.7    0.7    0.9    0.6    1.    0.9    0.3    1.    1.  
+ 
+         column 11
+ 
+    1.  
+ 
+-->F = [min(D, 1 - B)] //pchelkina
+ F  =
+ 
+ 
+         column 1 to 9
+ 
+    0.3    0.7    0.3    0.5    0.4    0.3    0.1    0.2    0.  
+ 
+         column 10 to 11
+ 
+    0.    0.  
+ 
+-->G = [min(min((1 - A), B), C)]
+ G  =
+ 
+ 
+         column 1 to 9
+ 
+    0.3    0.1    0.5    0.3    0.5    0.2    0.2    0.2    0.1  
+ 
+         column 10 to 11
+ 
+    0.    0.  
+ 
+-->plot2d(U, G, '.b')
+                   !--error 246 
+Функция не определена для заданных типов параметров,
+  проверьте параметры или определите функцию %c_plot2d как перегружаемую.
+ 
+ 
+-->plot(U, G, '.b')
+ 
+-->plot(U, G, 13)
+ 
+-->plot(U, G, '.b') //pchelkina
+ 
+-->plot2d2(U, G, 13)
+ 
+-->plot(G, U, '.b') //pchelkina
+ 
+-->plot(U, G, '.b') //pchelkina
+ 
+-->plot2d2(U, G, 13)
+ 
+-->xgrid
+ 
+-->plot2d2(G, U, 13)
+ 
+-->plot(U, G, '.b') //pchelkina
+ 
+-->xgrid
+ 
+-->plot2d3(U, G, 13)
+ 
+-->plot(U, A, '.b') //pchelkina
+ 
+-->plot2d3(U, A, 13)
+ 
+-->xgrid
+ 
+-->plot(U, B, '.b') //pchelkina
+ 
+-->plot2d3(U, B, 13); xgrid
+ 
+-->plot(U, C, '.b') //pchelkina
+ 
+-->plot2d3(U, C, 13); xgrid
+ 
+-->plot(U, C, '.b') //pchelkina
+ 
+-->plot2d3(U, C, 13); xgrid
+ 
+-->plot(U, D, '.b') //pchelkina
+ 
+-->plot2d3(U, D, 13); xgrid
+ 
+-->plot(U, E, '.b') //pchelkina
+ 
+-->plot2d3(U, E, 13); xgrid
+ 
+-->plot(U, F, '.b') //pchelkina
+ 
+-->plot2d3(U, F, 13); xgrid
+ 
+-->plot(U, F, '.b') //pchelkina
+ 
+-->plot2d3(U, F, 13); xgrid
+ 
+-->diary(0)
+-->U = (1:0.01:10); //pchelkina
+ 
+-->B = trimf(U, [1 2 4]);
+ 
+-->C = trimf(U, [2 5 7]);
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\zFun.sci', -1)
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\sFun.sci', -1)
+ 
+-->A = zFun(U, [1 2]);
+ 
+-->D = sFun(U, [5 7]);
+ 
+-->plot(U, A, 'b', U, B, 'r', U, C, 'g', U, D, 'y');
+ 
+-->xgrid;
+ 
+-->legend('YA', 'YB', 'YC', 'YD');
+ 
+-->E = A'+B-A'.*B;
+ 
+-->F = 1 - E;
+ 
+-->G = F.*C;
+ 
+-->H = 1 - (C+D'-C.*D'); //PCHELKINA
+ 
+-->I = E.*H;
+ 
+-->plot(U, E, 'b', U, F, 'r', U, G, 'g');
+ 
+-->xgrid;
+ 
+-->legend('YE', 'YF', 'YG');
+ 
+-->plot(U, H, 'b', U, I, 'r');
+ 
+-->xgrid;
+ 
+-->legend('YH', 'YI');
+
+-->numerator = intsplin(U, U.*I);
+ 
+-->denumerator = intsplin(U, I); //pchelkina
+ 
+-->mean_x = (numerator/denumerator)
+ mean_x  =
+ 
+    2.0172395  
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\sgn.sci', -1)
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\smin.sci', -1)
+ 
+-->y1 = trimf(U, [0 3 6]);
+ 
+-->y2 = trimf(U, [2 5 8]);
+ 
+-->plot(U, y1, 'b', U, y2, 'r');
+ 
+-->U = (0:0.01:10);
+ 
+-->y1 = trimf(U, [0 3 6]);
+ 
+-->y2 = trimf(U, [2 5 8]);
+ 
+-->plot(U, y1, 'b', U, y2, 'r');
+ 
+-->xgrid;
+ 
+-->sgn1 = smin(y1, y2, 0.1);
+ 
+-->sgn2 = smin(y1, y2, 0.5);
+ 
+-->sgn3 = smin(y1, y2, 2);
+ 
+-->min = min(y1, y2);
+Внимание : переопределение функции : min                     . Выполните funcprot(0) для отключения этого сообщения
+
+-->plot(U, y1, 'b', U, y2, 'r', U, sgn1, 'g', U, sgn2, 'm--', U, sgn3, 'g', U, min, 'black');
+ 
+-->xgrid;
+ 
+-->legend('y1', 'y2', 'smin(0.1)', 'smin(0.5)', 'smin(2)', 'min');
+ 
+-->diary(0)

@@ -1,0 +1,135 @@
+#include <iostream.h>
+
+class Complex
+{
+	double Re, Im;
+public:
+	Complex();
+	Complex(double r, double i);
+	Complex(Complex &c);
+	void Set(double r, double i);
+	void SetRe(double r);
+	void SetIm(double i);
+	double GetRe();
+	double GetIm();
+	void Print();
+	void Add(Complex &c);
+	void Subtract(Complex &c);
+	void Multiply(Complex &c);
+	Complex operator+(Complex &c);
+	Complex operator-(Complex &c);
+	Complex operator*(Complex &c);
+	int operator==(Complex &c);
+};
+
+Complex::Complex()
+{
+	Re = 0;
+	Im = 0;
+}
+
+Complex::Complex(double r, double i)
+{
+	Re = r;
+	Im = i;
+}
+
+Complex::Complex(Complex &c)
+{
+	Re = c.Re;
+	Im = c.Im;
+}
+
+void Complex::Set(double r, double i)
+{
+	Re = r;
+	Im = i;
+}
+
+void Complex::SetRe(double r)
+{
+	Re = r;
+}
+
+void Complex::SetIm(double i)
+{
+	Im = i;
+}
+
+double Complex::GetRe()
+{
+	return Re;
+}
+
+double Complex::GetIm()
+{
+	return Im;
+}
+
+void Complex::Print()
+{
+	cout << Re;
+	if (Im >= 0)
+		cout << "+";
+	cout << Im << "*i" << endl;
+}
+
+void Complex::Add(Complex &c)
+{
+	Re += c.Re;
+	Im += c.Im;
+}
+
+void Complex::Subtract(Complex &c)
+{
+	Re -= c.Re;
+	Im -= c.Im;
+}
+
+void Complex::Multiply(Complex &c)
+{
+	Re = Re*c.Re - Im*c.Im;
+	Im = Re*c.Im + Im*c.Re;
+}
+
+Complex Complex::operator+(Complex &c)
+{
+	return Complex(Re+c.Re, Im+c.Im);
+}
+
+Complex Complex::operator-(Complex &c)
+{
+	return Complex(Re-c.Re, Im-c.Im);
+}
+
+Complex Complex::operator*(Complex &c)
+{
+	return Complex(Re*c.Re-Im*c.Im, Re*c.Im+Im*c.Re);
+}
+
+int Complex::operator==(Complex &c)
+{
+	if ((Re==c.Re) && (Im==c.Im))
+		return 1;
+	else
+		return 0;
+}
+
+void main()
+{
+	Complex a(-1,2),b,c;
+	a.Print();
+	b.SetRe(3);
+	b.SetIm(-5);
+	b.Print();
+	c.Set(2,3);
+	cout << c.GetRe() << ' ' << c.GetIm() << endl;
+	c = a+b;
+	c.Print();
+	a.Set(1,2);
+	b.Set(1,3);
+	if (a==b)
+		cout << "a==b" << endl;
+	else
+		cout << "a<>b" << endl;
+}

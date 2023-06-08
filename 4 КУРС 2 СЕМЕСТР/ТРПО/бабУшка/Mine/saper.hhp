@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=saper.chm
+Contents file=Saper1.hhc
+Default Window=Сапер_Вариант1
+Display compile progress=No
+Full-text search=Yes
+Index file=saper.hhk
+Language=0x419 Русский
+
+[WINDOWS]
+Сапер_Вариант1=,"Saper1.hhc","saper.hhk","mine1.html","mine1.html",,,,,0x22420,,0x46,,,,,,,,0
+
+
+[FILES]
+mine1.html
+mine_customize_field.html
+mine_object.html
+mine_play.html
+mine_tips.html
+ur1.htm
+
+[INFOTYPES]
+

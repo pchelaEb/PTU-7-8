@@ -1,0 +1,391 @@
+unit netUTables;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, StdCtrls, netUCore, Menus, ExtCtrls, Buttons, Spin, Math, ptmUEngine;
+
+type
+  TnetForm1 = class(TForm)
+    GridCapacity: TStringGrid;
+    GridActive: TStringGrid;
+    GridSleep: TStringGrid;
+    GridIncident: TStringGrid;
+    GridDelay: TStringGrid;
+    GridPriority: TStringGrid;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    SaveDialog1: TSaveDialog;
+    MainMenu1: TMainMenu;
+    N1: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N2: TMenuItem;
+    Label7: TLabel;
+    Label8: TLabel;
+    SpinStorages: TSpinEdit;
+    SpinBarriers: TSpinEdit;
+    OpenDialog1: TOpenDialog;
+    N6: TMenuItem;
+    GridIngibitor: TStringGrid;
+    ColorEdit: TSpinEdit;
+    Button1: TButton;
+    Label9: TLabel;
+    GridLamda: TStringGrid;
+    Label10: TLabel;
+    GridFunc: TStringGrid;
+    GridRefunc: TStringGrid;
+    FuncList: TComboBox;
+    GridRefuncClone: TStringGrid;
+    Label11: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N2Click(Sender: TObject);
+    procedure SpinBarriersChange(Sender: TObject);
+    procedure SpinStoragesChange(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure ClearTables(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure FuncListChange(Sender: TObject);
+    procedure GridRefuncSelectCell(Sender: TObject; ACol, ARow: Integer;
+      var CanSelect: Boolean);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  netForm1: TnetForm1;
+  f:textfile;
+  n,m:integer;
+
+implementation
+
+uses netHelpForm1, ptmUMain; //, Unit5, Unit7, Unit8, Unit4;
+
+{$R *.dfm}
+
+procedure TnetForm1.ClearTables;
+var
+  i : Integer;
+begin
+  GridCapacity.Rows[1].Clear;
+  GridDelay.Rows[1].Clear;
+  GridActive.Rows[1].Clear;
+  GridSleep.Rows[1].Clear;
+  GridPriority.Rows[1].Clear;
+  for i := 1 to GridIncident.RowCount do GridIncident.Rows[i].Clear;
+end;
+
+procedure TnetForm1.SpinStoragesChange(Sender: TObject);
+var
+  n, i : Integer;
+  s : string;
+begin
+  n := SpinStorages.Value;
+
+ 
+  GridCapacity.ColCount := n;
+  GridDelay.ColCount := n;
+  GridActive.ColCount := n;
+  GridIncident.RowCount := n + 1;
+  GridIngibitor.RowCount := n + 1;
+   GridRefunc.ColCount := n;
+  GridRefuncClone.ColCount := n;
+
+  for i := 1 to n do begin
+    s := 'P' + IntToStr(i);
+    GridCapacity.Cells[i - 1, 0] := s;
+    GridDelay.Cells[i - 1, 0] := s;
+    GridActive.Cells[i - 1, 0] := s;
+    GridIncident.Cells[0, i] := s;
+    GridIngibitor.Cells[0, i] := s;
+
+        //******************************************
+    GridRefunc.Cells[i - 1, 0] := s;
+
+
+  end;
+end;
+
+
+procedure TnetForm1.SpinBarriersChange(Sender: TObject);
+var
+  n, i : Integer;
+  s : string;
+begin
+  n := SpinBarriers.Value;
+
+  GridLamda.ColCount := n;  //*************************************************
+    GridFunc.ColCount := n;
+  GridSleep.ColCount := n;
+  GridPriority.ColCount := n;
+  GridIncident.ColCount := n + 1;
+  GridIngibitor.ColCount := n + 1;
+
+  for i := 1 to n do begin
+    s := 'T' + IntToStr(i);
+
+    Gridlamda.Cells[i - 1, 0] := s;    //***************************
+        GridFunc.Cells[i - 1, 0] := s;
+    GridSleep.Cells[i - 1, 0] := s;
+    GridPriority.Cells[i - 1, 0] := s;
+    GridIncident.Cells[i, 0] := s;
+    GridIngibitor.Cells[i, 0] := s;
+  end;
+end;
+
+procedure TnetForm1.FormCreate(Sender: TObject);
+begin
+  
+   Label9.Caption := 'Вектор пороговых значений ' + 'лямбда' + ' ';
+   Label10.Caption := 'Вектор начальных значений f(t)';// + #181 + ' ';
+   Label11.Caption := 'Вектор функций принадлежности ' + #181 + ' (Pi, P(i-1), f(t)) ';
+
+  SpinStoragesChange(nil);
+  SpinBarriersChange(nil);
+
+  FuncList.Visible := false;
+
+  FuncList.Width  := GridRefunc.ColWidths[0];
+  FuncList.Height := GridRefunc.RowHeights[0];
+
+  FuncList.Items.Add( #181 + 'i = ( min (' + #181 + 'i, max(' + #181 + '(i-1), f(t) ) ) )' );
+  FuncList.Items.Add(#181 + 'i = ( max (' + #181 + 'i, min(' + #181 + '(i-1), f(t) ) ) )');
+end;
+
+//кнопка выход
+procedure TnetForm1.N4Click(Sender: TObject);
+begin
+netForm1.Close;
+end;
+
+//кнопка сохранить матрицу для проги верификации
+procedure TnetForm1.N3Click(Sender: TObject);
+var FName1,s,value:string;
+iw,jw:integer;
+SL:TStringList;
+begin
+  SaveDialog1.Title:='Создание файла для анализа';
+  SaveDialog1.FileName:='Отчет1';
+  if SaveDialog1.Execute then
+  begin
+    FName1:=SaveDialog1.FileName;
+    Case SaveDialog1.FilterIndex of
+    1:FName1:=ChangeFileExt(FName1,'.txt');
+    end;
+  end;
+  SaveDialog1.Filter:='.txt';
+  SL := TStringList.Create;
+  for iw:=1 to GridIncident.ColCount - 1 do
+  begin
+    s := '';
+    for jw:=1 to GridIncident.RowCount - 1 do
+    begin
+      value := trim(GridIncident.Cells[iw,jw]);
+      if value = '' then value := '0';
+      s := TrimLeft(s + ' ') + value;
+    end;
+    SL.Add(s);
+  end;
+  SL.SaveToFile(FName1);
+  SL.Destroy;
+end;
+
+procedure TnetForm1.N2Click(Sender: TObject);
+var
+  Writer : TextFile;
+  ns, nb, i, j : Integer;
+begin
+  SaveDialog1.FileName := OpenDialog1.FileName;
+  if not SaveDialog1.Execute then Exit;
+
+  AssignFile(Writer, SaveDialog1.FileName);
+  Rewrite(Writer);
+  try
+    ns := SpinStorages.Value;
+    nb := SpinBarriers.Value;
+    WriteLn(Writer, ns, ' ', nb, ' ', ColorEdit.Value);
+
+    for i := 1 to ns do begin
+      WriteLn(Writer, GridCapacity.Cells[i - 1, 1]);
+      WriteLn(Writer, GridDelay.Cells[i - 1, 1]);
+      WriteLn(Writer, GridActive.Cells[i - 1, 1]);
+      Writeln(Writer, GridRefunc.Cells[i - 1, 1]);
+    end;
+
+    for i := 1 to nb do begin
+      WriteLn(Writer, GridLamda.Cells[i - 1, 1]);
+      WriteLn(Writer, GridFunc.Cells[i - 1, 1]);
+      WriteLn(Writer, GridSleep.Cells[i - 1, 1]);
+      WriteLn(Writer, GridPriority.Cells[i - 1, 1]);
+    end;
+
+    for i := 1 to ns do begin
+      for j := 1 to nb do begin
+        WriteLn(Writer, GridIncident.Cells[j, i]);
+        WriteLn(Writer, GridIngibitor.Cells[j, i]);
+      end;
+    end;
+
+    WriteLn(Writer, '');
+  finally
+    CloseFile(Writer);
+  end;
+end;
+
+//procedure TnetForm1.MenuQuitClick(Sender: TObject);
+//begin
+  //Close;
+//end;
+
+procedure TnetForm1.N6Click(Sender: TObject);
+begin
+netForm2.show;
+end;
+
+// переход в моделирование
+procedure TnetForm1.Button1Click(Sender: TObject);
+var
+  Writer : TextFile;
+  ns, nb, i, j : Integer;
+  filename : string;
+begin
+  SaveDialog1.FileName := OpenDialog1.FileName;
+
+  if not SaveDialog1.Execute then Exit;
+
+  AssignFile(Writer, SaveDialog1.FileName);
+  filename := SaveDialog1.FileName;
+  Rewrite(Writer);
+  try
+    ns := SpinStorages.Value;
+    nb := SpinBarriers.Value;
+    WriteLn(Writer, ns, ' ', nb, ' ', ColorEdit.Value);
+
+    for i := 1 to ns do begin      //для каждой позиции записываются данные из нижних таблиц
+      WriteLn(Writer, GridCapacity.Cells[i - 1, 1]);
+      WriteLn(Writer, GridDelay.Cells[i - 1, 1]);
+      WriteLn(Writer, GridActive.Cells[i - 1, 1]);
+
+    //**************************************
+      WriteLn(Writer, GridRefunc.Cells[i - 1, 1]);
+
+    end;
+
+    for i := 1 to nb do begin         //для каждого перехода записываются данные
+      WriteLn(Writer, GridLamda.Cells[i - 1, 1]);        //****************************
+      WriteLn(Writer, GridFunc.Cells[i - 1, 1]);
+      WriteLn(Writer, GridSleep.Cells[i - 1, 1]);
+      WriteLn(Writer, GridPriority.Cells[i - 1, 1]);
+
+     
+
+    end;
+
+    for i := 1 to ns do begin                   //записываются линки
+      for j := 1 to nb do begin
+        WriteLn(Writer, GridIncident.Cells[j, i]);
+        WriteLn(Writer, GridIngibitor.Cells[j, i]);
+      end;
+    end;
+
+    WriteLn(Writer, '');
+  finally
+    CloseFile(Writer);
+  end;
+ // CloseFile(Writer);
+
+//WinExec(PChar('ModelNetProgramm3v1\Odnomer_NET\PetriM.exe'), SW_ShowNormal);
+
+ptmMain.OpenModelFile(filename);
+
+Close();
+ptmMain.Show();
+
+
+
+end;
+
+
+// переход в верификацию
+//procedure TnetForm1.Button2Click(Sender: TObject);
+//var FName1,s,value:string;
+//iw,jw:integer;
+//SL:TStringList;
+////Rows:integer;
+////Cols:integer;
+//begin
+//  //GetTables;
+//  // Rows := GridIncident.RowCount -1;
+//  // Cols := GridIncident.ColCount - 1;
+//   Form8.Edit1.Text := IntToStr(SpinStorages.Value);
+//   Form8.Edit2.Text := IntToStr(SpinBarriers.Value);
+//   Form7.Edit1.Text := IntToStr(SpinStorages.Value);
+//   Form7.Edit2.Text := IntToStr(SpinBarriers.Value);
+//   Form4.Edit1.Text := IntToStr(SpinStorages.Value);
+//   Form4.Edit2.Text := IntToStr(SpinBarriers.Value);
+
+
+//  SaveDialog1.Title:='Создание файла для анализа';
+//  SaveDialog1.FileName:='Отчет1';
+//  if SaveDialog1.Execute then
+//  begin
+//    FName1:=SaveDialog1.FileName;
+//    Case SaveDialog1.FilterIndex of
+//    1:FName1:=ChangeFileExt(FName1,'.txt');
+//    end;
+//  end;
+//  SaveDialog1.Filter:='.txt';
+//  SL := TStringList.Create;
+//  for iw:=1 to GridIncident.ColCount - 1 do
+//  begin
+//    s := '';
+//    for jw:=1 to GridIncident.RowCount - 1 do
+//    begin
+//      value := trim(GridIncident.Cells[iw,jw]);
+//      if value = '' then value := '0';
+//      s := TrimLeft(s + ' ') + value;
+//    end;
+//    SL.Add(s);
+//  end;
+//  SL.SaveToFile(FName1);
+//  SL.Destroy;
+// Close();
+// Form5.Show();
+//end;
+
+
+procedure TnetForm1.FuncListChange(Sender: TObject);
+begin
+    GridRefunc.Cells[ThisCol, ThisRow] := FuncList.Text;
+    GridRefuncClone.Cells[ThisCol, ThisRow] := IntToStr(FuncList.ItemIndex);
+    
+    FuncList.Visible := false;
+end;
+
+procedure TnetForm1.GridRefuncSelectCell(Sender: TObject; ACol,
+  ARow: Integer; var CanSelect: Boolean);
+begin
+     ThisCol := ACol;
+     ThisRow := ARow;
+
+     FuncList.Left := GridRefunc.Left + GridRefunc.CellRect(ACol, ARow).Left;
+
+     FuncList.Top  := GridRefunc.Top +  ARow*GridRefunc.RowHeights[ARow] + 5;
+
+     FuncList.Visible := True;
+     FuncList.SetFocus;
+
+end;
+
+end.

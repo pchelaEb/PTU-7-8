@@ -1,0 +1,10 @@
+function y = LR(x, m, ls, rs, funL, funR) //pchelkina
+    for i = 1:length(x)
+        if m - ls <= x(i) & x(i) <= m & ls > 0
+            y(i) = funL((m - x(i))/ls)
+        elseif m < x(i) & x(i) <= m + rs & rs > 0
+            y(i) = funR((x(i) - m)/rs)
+        else y(i) = 0
+        end
+    end
+endfunction

@@ -1,0 +1,161 @@
+ ans  =
+ 
+    1.  
+ 
+-->U = (1:1:9);
+ 
+-->A = [0.2,0.9,0.7,0.7,0.1,0.3,0.5,0.8];
+ 
+-->B = [0.7,0.5,0.7,0.2,0.6,0.5,0.9,0.3,0.6];
+ 
+-->A = [0.2,0.9,0.7,0.7,0.1,0.3,0.5,0.5,0.8];
+ 
+-->C = [0.6,0.1,0.4,0.1,0.9,0.6,1.0,0.5,0.2]; //pchelkina
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\dubua.sci', -1)
+ 
+-->D1 = dubua(A, B, 0);
+ 
+-->plot(U, D1);
+ 
+-->D2 = dubua(D1, C, 0);
+ 
+-->plot(U, D2);
+ 
+-->maxD1 = max(D2)
+ maxD1  =
+ 
+    0.5  
+ 
+-->plot(U, D2);
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\Cut.sci', -1)
+ 
+-->maxD1 = Cut(max(D2), U, D2)
+ maxD1  =
+ 
+    7.  
+ 
+-->plot(U, D2);
+ 
+-->gama = (0:0.25:1)
+ gama  =
+ 
+    0.    0.25    0.5    0.75    1.  
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\banck.sci', -1)
+ 
+-->res = b(U, A, B, C)
+                    !--error 4 
+Неизвестная переменная: b
+ 
+ 
+-->res = banck(U, A, B, C)
+ !--error 21 
+Неправильный индекс.
+at line       6 of function banck called by :  
+res = banck(U, A, B, C)
+ 
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\лр6\banck.sci', -1)
+Внимание : переопределение функции : banck                   . Выполните funcprot(0) для отключения этого сообщения
+
+ 
+-->res = banck(U, A, B, C)
+ res  =
+ 
+    7.  
+    7.  
+    7.  
+    7.  
+    7.  
+ 
+-->D1 = dubua(A, B, 0.25);
+ 
+-->D2 = dubua(D1, C, 0.25);
+ 
+-->maxD1 = Cut(max(D2), U, D2)
+ maxD1  =
+ 
+    7.  
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 1);
+ 
+-->D2 = dubua(D1, C, 1);
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 0.25);
+ 
+-->D2 = dubua(D1, C, 0.25);
+ 
+-->plot(U, D2);
+ 
+-->plot(U, res)
+ !--error 10000 
+plot: Wrong size for input arguments #2 and #3: Incompatible dimensions.
+at line      93 of function checkXYPair called by :  
+at line     235 of function plot called by :  
+plot(U, res)
+ 
+ 
+-->plot(res)
+ 
+-->xgrid;
+ 
+-->D1 = dubua(A, B, 0);
+ 
+-->D2 = dubua(D1, C, 0);
+ 
+-->plot(U, D2);
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 0.25);
+ 
+-->D2 = dubua(D1, C, 0.25);
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 0.5);
+ 
+-->D2 = dubua(D1, C, 0.5);
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 0.75);
+ 
+-->D2 = dubua(D1, C, 0.75);
+ 
+-->plot(U, D2);
+ 
+-->D1 = dubua(A, B, 1);
+ 
+-->D2 = dubua(D1, C, 1);
+ 
+-->plot(U, D2);
+ 
+-->xgrid
+ 
+-->D1 = dubua(A, B, 0); D2 = dubua(D1, C, 0); plot(U, D2, 'b');
+ 
+-->D1 = dubua(A, B, 0); D2 = dubua(D1, C, 0); plot(U, D2, 'b');
+ 
+-->D1 = dubua(A, B, 0.25); D2 = dubua(D1, C, 0.25); plot(U, D2, 'r');
+ 
+-->D1 = dubua(A, B, 0.5); D2 = dubua(D1, C, 0.5); plot(U, D2, 'black');
+ 
+-->D1 = dubua(A, B, 0.75); D2 = dubua(D1, C, 0.75); plot(U, D2, 'y');
+ 
+-->D1 = dubua(A, B, 1); D2 = dubua(D1, C, 1); plot(U, D2, 'g');
+ 
+-->xgid
+  !--error 4 
+Неизвестная переменная: xgid
+ 
+ 
+-->xgrid
+ 
+-->diary(0)

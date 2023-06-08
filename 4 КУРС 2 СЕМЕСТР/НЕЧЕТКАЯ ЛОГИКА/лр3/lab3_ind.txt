@@ -1,0 +1,271 @@
+ ans  =
+ 
+    1.  
+ 
+-->x = (0:0.01:1)'; //pchelkina
+ 
+-->y1=trapmf (x,[0.1 0.3 0.5 0.7]);
+ 
+-->y2=trimf(x,[0.1 0.2 0.6]);
+ 
+-->y3=trimf(x,[0.4 0.7 0.9]);
+ 
+ 
+-->subplot(4,1,1)
+ 
+-->plot2d(x,[y1 y2 y3])
+ 
+-->xtitle("y1,y2,y3","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('y1','y2','y3',2, %t);
+ 
+ 
+-->subplot(4,1,2)
+ 
+-->c1=[min(y1,y2,y3)];
+ 
+-->plot2d(x, c1)
+ 
+-->xtitle("min(y1,y2,y3) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('min(y1,y2,y3)',1, %t);
+ 
+ 
+ 
+-->subplot(4,1,3)
+ 
+-->c2=[max(y1,y2,y3)];
+ 
+-->plot2d(x,c2);
+ 
+-->xtitle("max(y1,y2,y3) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('max(y1,y2,y3)',1, %t);
+ 
+ 
+-->subplot(4,1,4)
+ 
+-->c3=[max(y1-y2-y3,0)];
+ 
+-->plot2d(x,c3);
+ 
+-->xtitle("max(y1-y2-y3,0) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('max(y1-y2-y3,0)',1, %t);
+ 
+
+ 
+-->x = (0:0.01:1)'; //pchelkina
+ 
+-->s=psigmf(x,[15 0.6 -15 0.8]);
+ 
+-->a=0.5;
+ 
+-->b=4;
+ 
+ 
+-->subplot(3,2,1)
+ 
+-->plot2d(x,[s])
+ 
+-->xtitle("psigmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('psigmf',2, %t);
+ 
+ 
+-->subplot(3,2,2)
+ 
+-->y=[1-s];
+ 
+-->plot2d(x, y)
+ 
+-->xtitle("1-psigmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('1-psigmf',1, %t);
+ 
+ 
+ 
+-->subplot(3,2,3)
+ 
+-->y1=[a*s];
+ 
+-->plot2d(x, y1)
+ 
+-->xtitle("a*psigmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('a*psigmf',1, %t);
+ 
+ 
+-->subplot(3,2,4)
+ 
+-->y2=[s^2];
+ 
+-->plot2d(x, y2)
+ 
+-->xtitle("psigmf^2","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('psigmf^2',1, %t);
+ 
+ 
+ 
+-->subplot(3,2,5)
+ 
+-->y3=[s^0.5];
+ 
+-->plot2d(x, y3)
+ 
+-->xtitle("psigmf^0.5 ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('psigmf^0.5 ',1, %t);
+ 
+ 
+-->subplot(3,2,6)
+ 
+-->y4=[s^b];
+ 
+-->plot2d(x, y4)
+ 
+-->xtitle("psigmf^b ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('psigmf^b ',1, %t);
+ 
+-->x = (0:0.01:1)'; //pchelkina
+ 
+-->s=trimf(x,[0.1 0.3 0.6]);
+ 
+-->z=trapmf(x,[0.3 0.5 0.7 0.9]);
+ 
+ 
+-->subplot(4,2,1)
+ 
+-->plot2d(x,[s z])
+ 
+-->xtitle("trimf,trapmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf',2, %t);
+ 
+ 
+-->subplot(4,2,2)
+ 
+-->y=[abs(s-z)];
+ 
+-->plot2d(x,[s z y])
+ 
+-->xtitle("abs(trimf-trapmf) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','abs(trimf-trapmf)',1, %t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["trimf,trapmf";"abs(trimf-trapmf)"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline"]
+legend_location = "in_upper_right"
+position = [0.4936476,0.1325001]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+ 
+ 
+-->subplot(4,2,3)
+ 
+-->y3=[max(min(s,1-z),min(1-s,z))];
+ 
+-->plot2d(x,[s z y3])
+ 
+-->xtitle("dizyukt.sum","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','dizyukt.sum',1, %t);
+ 
+ 
+-->subplot(4,2,4)
+ 
+-->y4=[z.*s];
+ 
+-->plot2d(x,[s z y4])
+ 
+-->xtitle("trimf.*trapmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','trimf.*trapmf',1, %t);
+ 
+ 
+-->subplot(4,2,5)
+ 
+-->y5=[s+z-s.*z];
+ 
+-->plot2d(x,[s z y5])
+ 
+-->xtitle("trimf+trapmf-trimf.*trapmf","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','trimf+trapmf-trimf.*trapmf',1, %t);
+ 
+ 
+-->subplot(4,2,6)
+ 
+-->y6=[max(s+z-1,0)];
+ 
+-->plot2d(x,[s z y6])
+ 
+-->xtitle("max(trimf+trapmf2-1,0) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','max(trimf+trapmf-1,0) ',1, %t);
+ 
+ 
+-->subplot(4,2,7)
+ 
+-->y7=[min((s+z),1)];
+ 
+-->plot2d(x,[s z y7])
+ 
+-->xtitle("min((trimf+trapmf),1) ","x","y(x)");
+ 
+-->xgrid
+ 
+-->legend('trimf,trapmf','min((trimf+trapmf),1) ',1, %t);
+ 
+-->diary(0);

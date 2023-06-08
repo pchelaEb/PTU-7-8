@@ -1,0 +1,361 @@
+ ans  =
+ 
+    1.  
+ 
+-->a = 'stroka' //pchelkina
+ a  =
+ 
+ stroka   
+ 
+-->a = 1+4
+ a  =
+ 
+    5.  
+ 
+-->3+5
+ ans  =
+ 
+    8.  
+ 
+-->%e
+ %e  =
+ 
+    2.7182818  
+ 
+-->4*8+5.5\2.2-2^2
+ ans  =
+ 
+    28.4  
+ 
+-->1+2+3+4+5...
+-->+6+7+8+9...
+-->+10
+ ans  =
+ 
+    55.  
+ 
+-->x=linspace(0,1,10)'
+ x  =
+ 
+    0.         
+    0.1111111  
+    0.2222222  
+    0.3333333  
+    0.4444444  
+    0.5555556  
+    0.6666667  
+    0.7777778  
+    0.8888889  
+    1.         
+ 
+-->=linspace(0,1,10)'; //pchelkina
+  !--error 2 
+Неправильный множитель.
+ 
+ 
+ 
+-->x=linspace(0,1,10)'; //pchelkina
+ 
+-->x=2.5; y=3.6; //pchelkina
+ 
+-->a=sqrt(abs(cos(y/x)))+log10(exp(x^y))
+ a  =
+ 
+    12.120087  
+ 
+-->deff('a=fun(x,y)','a=sqrt(abs(cos(y/x)))+log10(exp(x^y))');
+ 
+-->>a=2.5; b=3.6; c=fun(a,b);
+  !--error 1 
+Некорректное присвоение.
+ 
+ 
+-->>a=2.5; b=3.6; c=fun(a,b); //pchelkina
+  !--error 1 
+Некорректное присвоение.
+ 
+ 
+-->a=2.5; b=3.6; c=fun(a,b);
+ 
+-->c //pchelkina
+ ans  =
+ 
+    12.120087  
+ 
+-->function a=f(x),
+-->a=x^2 //pchelkina
+-->endfunction
+ 
+-->f(3)
+ ans  =
+ 
+    9.  
+ 
+-->exec('C:\Users\olpch\Documents\4 КУРС 2 СЕМЕСТР\НЕЧЕТКАЯ ЛОГИКА\f.sci', -1)
+Внимание : переопределение функции : f                       . Выполните funcprot(0) для отключения этого сообщения
+
+ 
+-->f(0.2) //pchelkina
+ ans  =
+ 
+    0.04  
+ 
+-->spisok=[1,10,50,100]
+ spisok  =
+ 
+    1.    10.    50.    100.  
+ 
+-->spisok=[30;60;70;80]
+ spisok  =
+ 
+    30.  
+    60.  
+    70.  
+    80.  
+ 
+-->spisok(3)
+ ans  =
+ 
+    70.  
+ 
+-->spisok=-5:5
+ spisok  =
+ 
+ 
+         column 1 to 9
+ 
+  - 5.  - 4.  - 3.  - 2.  - 1.    0.    1.    2.    3.  
+ 
+         column 10 to 11
+ 
+    4.    5.  
+ 
+-->spisok=0:0.2:1.5
+ spisok  =
+ 
+    0.    0.2    0.4    0.6    0.8    1.    1.2    1.4  
+ 
+-->spisok=[6,45,76,98,0 //pchelkina
+-->55,44,33,22,11
+-->5,6,7,8,9]
+ spisok  =
+ 
+    6.     45.    76.    98.    0.   
+    55.    44.    33.    22.    11.  
+    5.     6.     7.     8.     9.   
+ 
+-->spisok(2,3)
+ ans  =
+ 
+    33.  
+ 
+-->spisok=[50,67,89,3;4,7,1,0;78,234,45,1]
+ spisok  =
+ 
+    50.    67.     89.    3.  
+    4.     7.      1.     0.  
+    78.    234.    45.    1.  
+ 
+-->eye(2,3) //pchelkina
+ ans  =
+ 
+    1.    0.    0.  
+    0.    1.    0.  
+ 
+-->ones(2,3)
+ ans  =
+ 
+    1.    1.    1.  
+    1.    1.    1.  
+ 
+-->zeros(2,3)
+ ans  =
+ 
+    0.    0.    0.  
+    0.    0.    0.  
+ 
+-->rand(2,3)
+ ans  =
+ 
+    0.2113249    0.0002211    0.6653811  
+    0.7560439    0.3303271    0.6283918  
+ 
+-->x=1;for k=1:4,x=x*k, end //pchelkina
+ x  =
+ 
+    1.  
+ x  =
+ 
+    2.  
+ x  =
+ 
+    6.  
+ x  =
+ 
+    24.  
+
+-->x=1; while x<10, x=x*2,end //pchelkina
+ x  =
+ 
+    2.  
+ x  =
+ 
+    4.  
+ x  =
+ 
+    8.  
+ x  =
+ 
+    16.  
+ 
+ 
+Введите «resume» или «abort» для возврата на стандартный уровень командной строки.
+
+-1->abort
+ 
+-->i=2; //pchelkina
+ 
+-->for j = 1:3,
+-->if i == j then
+-->a(i,j) = 2;
+-->elseif abs(i-j) == 1 then
+-->a(i,j) = -1;
+-->else a(i,j) = 0;
+-->end,
+-->end
+ 
+-->a
+ a  =
+ 
+    2.5    0.    0.  
+  - 1.     2.  - 1.  
+ 
+-->x=-1 select x,
+        !--error 276 
+Пропущен оператор, запятая или точка с запятой.
+ 
+ 
+ 
+-->x=-%pi:0.01:%pi;
+ 
+-->y=(sin(2*x))^2;
+ 
+ 
+-->plot(x,y)//pchelkina
+ 
+-->x=-2*%pi:0.01:2*%pi;
+ 
+-->1=sin(x); //pchelkina
+Внимание: устаревшее использование '=' вместо '=='.
+   !       
+ 
+
+ 
+-->x=-2*%pi:0.01:2*%pi;
+ 
+-->f1=sin(x);
+ 
+-->f2=cos(x);
+ 
+-->f3=sqrt(abs(x)); //pchelkina
+ 
+-->plot(x,f1,x,f2,x,f3)
+ 
+-->x=0:0.1:3; //pchelkina
+ 
+-->f1=x^2;
+ 
+-->f2=x+1;
+ 
+-->f3=%e^x;
+ 
+-->plot(x,f1,'y.:',x,f2,'cd--',x,f3,'k*-')
+ 
+-->t=[0:0.3:2*%pi]';
+ 
+-->Z=sin(t)*cos(t'); //pchelkina
+ 
+-->plot3d(t,t,Z);
+ 
+-->plot3d(t,t,Z);
+ 
+-->plot3d1(t,t,Z,40,60,'x@y@z@',[5,2,2]);
+ 
+-->plot3d1(t,t,Z,40,60,'x@y@z@',[5,2,2]);
+ 
+-->x=0:0.1:3;
+ 
+-->f1=x^2; f2=x+1; f3=%e^x;
+ 
+-->plot(x,f1,'y.:',x,f2,'cd--',x,f3,'k*-') //pchelkina
+ 
+-->xgrid;
+ 
+-->xtitle('Пример', 'ось Х', 'ось У');
+ 
+-->legend('f1(x)=x2', 'f2(x)=1+x', 'f3(x)=ex',2, %t)
+ !--error 10000 
+legend: No 'Polyline' handle found.
+at line      73 of function legend called by :  
+legend('f1(x)=x2', 'f2(x)=1+x', 'f3(x)=ex',2, %t)
+ 
+ 
+-->x=0:0.1:3;
+ 
+-->f1=x^2; f2=x+1; f3=%e^x;
+ 
+-->plot(x,f1,'y.:',x,f2,'cd--',x,f3,'k*-') //pchelkina
+ 
+-->xgrid;
+ 
+-->xtitle('Пример', 'ось Х', 'ось У');
+ 
+-->legend('f1(x)=x2', 'f2(x)=1+x', 'f3(x)=ex',2, %t)
+ ans  =
+ 
+Handle of type "Legend" with properties:
+========================================
+parent: Axes
+children: []
+visible = "on"
+text = ["f1(x)=x2";"f2(x)=1+x";"f3(x)=ex"]
+font_style = 6
+font_size = 1
+font_color = -1
+fractional_font = "off"
+links = ["Polyline","Polyline","Polyline"]
+legend_location = "in_upper_left"
+position = [0.1343750,0.1325]
+line_mode = "on"
+thickness = 1
+foreground = -1
+fill_mode = "on"
+background = -2
+clip_state = "off"
+clip_box = []
+user_data = []
+tag = 
+ 
+-->x=2:4;y=x+4; //pchelkina
+ 
+-->subplot(5,3,8);
+ 
+-->plot(x,y)
+ 
+-->subplot(5,3,9);
+ 
+-->x=2:4;y=x+4; //pchelkina
+ 
+-->subplot(5,3,8);
+ 
+-->plot(x,y)
+ 
+-->subplot(5,3,9);
+ 
+-->plot(x,y)
+ 
+-->subplot(5,3,13);
+ 
+-->plot(x,y)
+ 
+-->diary(0)

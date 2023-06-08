@@ -1,0 +1,71 @@
+object ptmAbout: TptmAbout
+  Left = 623
+  Top = 155
+  Width = 321
+  Height = 234
+  Caption = #1054' '#1087#1088#1086#1075#1088#1072#1084#1084#1077
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 8
+    Top = 8
+    Width = 281
+    Height = 153
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ParentColor = True
+    TabOrder = 0
+    object ProductName: TLabel
+      Left = 8
+      Top = 8
+      Width = 257
+      Height = 41
+      AutoSize = False
+      Caption = 
+        #1055#1088#1086#1075#1088#1072#1084#1084#1072' '#1080#1084#1080#1090#1072#1094#1080#1086#1085#1085#1086#1075#1086' '#1084#1086#1076#1077#1083#1080#1088#1086#1074#1072#1085#1080#1103' '#1085#1072' '#1073#1072#1079#1077' '#1072#1087#1087#1072#1088#1072#1090#1072' '#1089#1077#1090#1077#1081' '#1055#1077#1090 +
+        #1088#1080
+      WordWrap = True
+      IsControl = True
+    end
+    object Copyright: TLabel
+      Left = 8
+      Top = 88
+      Width = 185
+      Height = 57
+      AutoSize = False
+      Caption = 
+        #1056#1072#1079#1088#1072#1073#1086#1090#1095#1080#1082': '#1047#1072#1078#1080#1075#1080#1085' '#1056'.'#1051'. '#1056#1091#1082#1086#1074#1086#1076#1080#1090#1077#1083#1100': '#1057#1091#1082#1086#1085#1097#1080#1082#1086#1074' '#1040'.'#1040'. - '#1076#1086#1094#1077#1085#1090 +
+        ' '#1082#1072#1092#1077#1076#1088#1099' '#1040#1058#1055#1055' '#1042#1086#1043#1058#1059', '#1082#1072#1085#1076#1080#1076#1072#1090' '#1090#1077#1093#1085#1080#1095#1077#1089#1082#1080#1093' '#1085#1072#1091#1082
+      WordWrap = True
+      IsControl = True
+    end
+    object Comments: TLabel
+      Left = 8
+      Top = 48
+      Width = 265
+      Height = 33
+      AutoSize = False
+      Caption = 
+        #1056#1072#1079#1088#1072#1073#1086#1090#1072#1085#1086' '#1074' '#1082#1072#1095#1077#1089#1090#1074#1077' '#1076#1080#1087#1083#1086#1084#1085#1086#1075#1086' '#1087#1088#1086#1077#1082#1090#1080#1088#1086#1074#1072#1085#1080#1103' '#1087#1086' '#1089#1087#1077#1094'. 210100' +
+        ' '#1042#1086#1043#1058#1059' '#1074' 2004 '#1075'.'
+      WordWrap = True
+      IsControl = True
+    end
+  end
+  object CloseAbout: TButton
+    Left = 112
+    Top = 176
+    Width = 75
+    Height = 25
+    Caption = #1054#1050
+    TabOrder = 1
+    OnClick = CloseAboutClick
+  end
+end

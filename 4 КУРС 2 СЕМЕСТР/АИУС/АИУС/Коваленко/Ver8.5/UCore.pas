@@ -1,0 +1,650 @@
+unit UCore;
+
+interface
+
+uses
+  Windows, SysUtils, Classes, Graphics, Forms, Contnrs, Math, ClassModule;
+
+
+type
+  // forward declarations
+  TNet = class;
+
+  // Элемент сети
+  TEntity = class
+  public
+    // Родительская сеть
+    m_Net: TNet;
+    // Прорисовка
+    procedure Paint; virtual; abstract;
+    // Необходимость перерисовки
+    procedure Invalidate; virtual; abstract;
+    // Проверка попадания указателя мыши
+    function HitTest(x, y: Integer) : Boolean; virtual; abstract;
+    // Запись элемента
+    procedure Save(var TextWriter: TextFile); virtual; abstract;
+  end;
+
+  // Вершина графа
+  TNode = class(TEntity)
+  public
+    // Координаты центра
+    m_Pos: TPoint;
+    // Имя
+    m_Name: string;
+    // Прорисовка
+    procedure Paint; override;
+    // Необходимость перерисовки
+    procedure Invalidate; override;
+    // Запись устройства
+    procedure Save(var TextWriter: TextFile); override;
+    // Необходимость перерисовки со связями
+    procedure InvalidateWithLinks;
+    // Перемещение с перерисовкой
+    procedure ChangePos(x, y: Integer);
+    // Возможность вывода
+    function CanAddOutput: Boolean; virtual; abstract;
+    // Возможность ввода
+    function CanAddInput: Boolean; virtual; abstract;
+  end;
+
+  // Дуга
+  TLink = class(TNode)
+  public
+    // Связь A->B
+    m_A, m_B: TNode;
+     // формула веса дуги
+    WeightOfLink: string;
+     // признак ингибиторности
+    Ingibit: boolean;
+    Ingibit1: Integer;
+    // Создание дуги
+    constructor Create(net: TNet; A, B: TNode);
+    // Прорисовка
+    procedure Paint; override;
+    // Необходимость перерисовки
+    procedure Invalidate; override;
+    // Проверка попадания указателя мыши
+    function HitTest(x, y: Integer): Boolean; override;
+    // Запись дуги
+    procedure Save(var TextWriter: TextFile); override;
+    // Чтение дуги
+    constructor Load(net: TNet; var TextReader: TextFile);
+  end;
+
+  // Переход
+  TBarrier = class(TNode)
+  public
+    // Математическое ожидание
+    m_MX: Integer;
+    // Дисперсия
+    m_DX: Integer;
+    // Приоритет
+    m_Priority: Integer;
+   //пропуск красного
+    m_Rred: Boolean;
+    m_red: Integer;
+   //пропуск зелёного
+    m_Ggreen: Boolean;
+    m_green: Integer;
+   // Создание перехода
+    constructor Create(net: TNet; X, Y, MX, DX, priority: Integer);
+    // Прорисовка
+    procedure Paint; override;
+    // Необходимость перерисовки
+    procedure Invalidate; override;
+    // Проверка попадания указателя мыши
+    function HitTest(x, y: Integer): Boolean; override;
+    // Запись перехода
+    procedure Save(var TextWriter: TextFile); override;
+    // Чтение перехода
+    constructor Load(net: TNet; var TextReader: TextFile);
+    // Возможность вывода
+    function CanAddOutput: Boolean; override;
+    // Возможность ввода
+    function CanAddInput: Boolean; override;
+  end;
+
+  // Устройство
+  TDevice = class(TNode)
+  public
+    // Необходимость перерисовки
+    procedure Invalidate; override;
+    // Возможность вывода
+    function CanAddOutput: Boolean; override;
+    // Возможность ввода
+    function CanAddInput: Boolean; override;
+  end;
+
+  // Позиция
+  TSlot = class(TDevice)
+  public
+    // Математическое ожидание
+    m_MX: Integer;
+    // Дисперсия
+    m_DX: Integer;
+    // Вместимость позиции
+    m_Capacity: Integer;
+    // Занятость позиции
+    m_Initial_red: Integer;
+    m_Initial_green: Integer;
+    //m_Initial_blue: Integer;
+    // Создание позиции
+    constructor Create(net: TNet; X, Y, MX, DX, capacity, initial_red, initial_green {*,initial_blue*}: Integer);
+    // Прорисовка
+    procedure Paint; override;
+    // Проверка попадания указателя мыши
+    function HitTest(x, y: Integer): Boolean; override;
+    // Запись позиции
+    procedure Save(var TextWriter: TextFile); override;
+    // Чтение позиции
+    constructor Load(net: TNet; var TextReader: TextFile);
+  end;
+
+
+
+  // E-сеть
+  TNet = class
+  public
+    // Полотно
+    m_Canvas: TCanvas;
+    // Область прокрутки
+    m_Box: TScrollBox;
+    // Вершины
+    m_Nodes: TObjectList;
+    // Дуги
+    m_Links: TObjectList;
+    // Выбранный элемент
+    m_Selected: TEntity;
+    // Создание пустой сети
+    constructor Create(canvas: TCanvas; box: TScrollBox);
+    // Разрушение сети
+    destructor Destroy; override;
+    // Очистка сети
+    procedure Clear;
+    // Выбор устройства
+    procedure Select(entity: TEntity);
+    // Прорисовка
+    procedure Paint;
+    // Необходимость перерисовки
+    procedure Invalidate(x, y, w, h: Integer);
+    // Проверка попадания указателя мыши
+    function HitTest(x, y: Integer) : TEntity;
+    // Запись сети
+    procedure Save(var TextWriter: TextFile);
+    // Чтение сети
+    procedure Load(var TextReader: TextFile);
+    
+  end;
+
+
+implementation
+
+{ TNode }
+
+
+procedure TNode.Paint;
+var
+  e: TSize;
+begin
+  if m_Name = '' then Exit;
+  with m_Net.m_Canvas do begin
+    Brush.Style := bsClear;
+    e := TextExtent(m_Name);
+    TextOut(m_Pos.X - (e.cx shr 1), m_Pos.Y - 15 - e.cy, m_Name);
+  end;
+end;
+
+
+procedure TNode.Invalidate;
+var
+  e: TSize;
+begin
+  if m_Name = '' then Exit;
+  with m_Net.m_Canvas do begin
+    e := TextExtent(m_Name);
+  end;
+  m_Net.Invalidate(m_Pos.X - (e.cx shr 1), m_Pos.Y - 15 - e.cy, e.cx, e.cy);
+end;
+
+
+procedure TNode.Save(var TextWriter: TextFile);
+begin
+  WriteLn(TextWriter, m_Pos.X, ' ', m_Pos.Y);
+  WriteLn(TextWriter, m_Name);
+end;
+
+
+procedure TNode.InvalidateWithLinks;
+var
+  i: Integer;
+  link: TLink;
+begin
+  Invalidate;
+  with m_Net.m_Links do begin
+    for i := 0 to Count - 1 do begin
+      link := TLink(Items[i]);
+      if (link.m_A = Self) or (link.m_B = Self) then link.Invalidate;
+    end;
+  end;
+end;
+
+
+procedure TNode.ChangePos(x, y: Integer);
+begin
+  x := EnsureRange(x, 10, m_Net.m_Box.HorzScrollBar.Range - 10);
+  y := EnsureRange(y, 10, m_Net.m_Box.VertScrollBar.Range - 10);
+  if (m_Pos.X <> x) or (m_Pos.Y <> y) then begin
+    InvalidateWithLinks;
+    m_Pos.X := x;
+    m_Pos.Y := y;
+    InvalidateWithLinks;
+  end;
+end;
+
+
+{ TLink }
+
+
+constructor TLink.Create(net: TNet; A, B: TNode);
+begin
+  m_Net := net;
+  m_A := A;
+  m_B := B;
+  m_Net.m_Links.Add(Self);
+end;
+
+
+procedure TLink.Paint;
+var
+  AX, AY, BX, BY, MX, MY, CX, CY, DX, DY: Integer;
+  Lab, cosw, sinw: Real;
+begin
+  AX := TDevice(m_A).m_Pos.X;
+  AY := TDevice(m_A).m_Pos.Y;
+  BX := TDevice(m_B).m_Pos.X;
+  BY := TDevice(m_B).m_Pos.Y;
+  MX := (AX + BX) shr 1;
+  MY := (AY + BY) shr 1;
+
+  Lab := Sqrt(Max(1, Sqr(BX - AX) + Sqr(BY - AY)));
+  cosw := (BX - AX) / Lab;
+  sinw := (BY - AY) / Lab;
+
+  CX := MX + Round(-10 * cosw - 5 * sinw);
+  CY := MY + Round(-10 * sinw + 5 * cosw);
+  DX := MX + Round(-10 * cosw + 5 * sinw);
+  DY := MY + Round(-10 * sinw - 5 * cosw);
+
+  with m_Net.m_Canvas do begin
+    MoveTo(AX, AY);  LineTo(BX, BY);
+    MoveTo(MX, MY);  LineTo(CX, CY);
+    MoveTo(MX, MY);  LineTo(DX, DY);
+  end;
+end;
+
+
+procedure TLink.Invalidate;
+var
+  AX, AY, BX, BY, t: Integer;
+begin
+  AX := TDevice(m_A).m_Pos.X;
+  AY := TDevice(m_A).m_Pos.Y;
+  BX := TDevice(m_B).m_Pos.X;
+  BY := TDevice(m_B).m_Pos.Y;
+  if AX > BX then begin t := AX; AX := BX; BX := t; end;
+  if AY > BY then begin t := AY; AY := BY; BY := t; end;
+  m_Net.Invalidate(AX - 10, AY - 10, BX - AX + 20, BY - AY + 20);
+end;
+
+
+function TLink.HitTest(x, y: Integer): Boolean;
+var
+  AX, AY, BX, BY, VX, VY : Integer;
+begin
+  AX := TDevice(m_A).m_Pos.X;
+  AY := TDevice(m_A).m_Pos.Y;
+  BX := TDevice(m_B).m_Pos.X;
+  BY := TDevice(m_B).m_Pos.Y;
+  VX := BX - AX;
+  VY := BY - AY;
+  Result :=
+    ((x - AX) * VX >= (AY - y) * VY) and
+    ((x - BX) * VX <= (BY - y) * VY) and
+    (Abs((x - AX) * VY + (AY - y) * VX) <= Sqrt(Sqr(VX) + Sqr(VY)) * 5);
+end;
+
+
+procedure TLink.Save(var TextWriter: TextFile);
+var
+  na, nb: Integer;
+begin
+  na := m_Net.m_Nodes.IndexOf(m_A);
+  nb := m_Net.m_Nodes.IndexOf(m_B);
+  WriteLn(TextWriter, na, ' ', nb);
+end;
+
+
+constructor TLink.Load(net: TNet; var TextReader: TextFile);
+var
+  na, nb: Integer;
+begin
+  m_Net := net;
+  ReadLn(TextReader, na, nb);
+  m_A := TNode(m_Net.m_Nodes.Items[na]);
+  m_B := TNode(m_Net.m_Nodes.Items[nb]);
+  m_Net.m_Links.Add(Self);
+end;
+
+
+{ TBarrier }
+
+
+constructor TBarrier.Create(net: TNet; X, Y, MX, DX, priority: Integer);
+begin
+  m_Net := net;
+  m_Pos.X := X;
+  m_Pos.Y := Y;
+  m_MX := MX;
+  m_DX := DX;
+  m_Priority := priority;
+  m_Net.m_Nodes.Add(Self);
+end;
+
+
+procedure TBarrier.Paint;
+begin
+  inherited;
+  with m_Net.m_Canvas do begin
+    Brush.Style := bsSolid;
+    Brush.Color := Pen.Color;
+    Rectangle(m_Pos.X - 2, m_Pos.Y - 10, m_Pos.X + 2, m_Pos.Y + 10);
+  end;
+end;
+
+
+procedure TBarrier.Invalidate;
+begin
+  inherited;
+  m_Net.Invalidate(m_Pos.X - 2, m_Pos.Y - 10, 4, 20);
+end;
+
+
+function TBarrier.HitTest(x, y: Integer): Boolean;
+begin
+  Result := (Abs(x - m_Pos.X) <= 5) and (Abs(y - m_Pos.Y) <= 10);
+end;
+
+
+procedure TBarrier.Save(var TextWriter: TextFile);
+begin
+  inherited;
+  WriteLn(TextWriter, m_MX, ' ', m_DX, ' ', m_Priority);
+end;
+
+
+constructor TBarrier.Load(net: TNet; var TextReader: TextFile);
+begin
+  m_Net := net;
+  ReadLn(TextReader, m_Pos.X, m_Pos.Y);
+  ReadLn(TextReader, m_Name);
+  ReadLn(TextReader, m_MX, m_DX, m_Priority);
+  m_Net.m_Nodes.Add(Self);
+end;
+
+
+function TBarrier.CanAddOutput: Boolean;
+begin
+  Result := true;
+end;
+
+
+function TBarrier.CanAddInput: Boolean;
+begin
+  Result := true;
+end;
+
+
+{ TDevice }
+
+
+procedure TDevice.Invalidate;
+begin
+  inherited;
+  m_Net.Invalidate(m_Pos.X - 10, m_Pos.Y - 10, 20, 20);
+end;
+
+
+function TDevice.CanAddOutput: Boolean;
+var
+  i: Integer;
+begin
+  with m_Net.m_Links do begin
+    for i := 0 to Count - 1 do begin
+      if TLink(Items[i]).m_A = Self then begin
+        Result := false;
+        Exit;
+      end;
+    end;
+  end;
+  Result := true;
+end;
+
+
+function TDevice.CanAddInput: Boolean;
+var
+  i: Integer;
+begin
+  with m_Net.m_Links do begin
+    for i := 0 to Count - 1 do begin
+      if TLink(Items[i]).m_B = Self then begin
+        Result := false;
+        Exit;
+      end;
+    end;
+  end;
+  Result := true;
+end;
+
+
+{ TSlot }
+
+
+constructor TSlot.Create(net: TNet; X, Y, MX, DX, capacity, initial_red, initial_green{*, initial_blue*}: Integer);
+begin
+  m_Net := net;
+  m_Pos.X := X;
+  m_Pos.Y := Y;
+  m_MX := MX;
+  m_DX := DX;
+  m_Capacity := capacity;
+  m_Initial_red := initial_red;
+  m_Initial_green := initial_green;
+  //m_Initial_blue := initial_blue;
+  m_Net.m_Nodes.Add(Self);
+end;
+
+
+procedure TSlot.Paint;
+begin
+  inherited;
+  with m_Net.m_Canvas do begin
+    Brush.Style := bsSolid;
+    Brush.Color := clCream;
+    Ellipse(m_Pos.X - 10, m_Pos.Y - 10, m_Pos.X + 10, m_Pos.Y + 10);
+    if (m_Initial_red <> 0) or (m_Initial_green <> 0) then begin
+      Brush.Style := bsClear;
+      Rectangle(m_Pos.X - 2, m_Pos.Y - 2, m_Pos.X + 2, m_Pos.Y + 2);
+    end;
+  end;
+end;
+
+
+function TSlot.HitTest(x, y: Integer): Boolean;
+begin
+  Result := Sqr(x - m_Pos.X) + Sqr(y - m_Pos.Y) <= 100;
+end;
+
+
+procedure TSlot.Save(var TextWriter: TextFile);
+begin
+  inherited;
+  WriteLn(TextWriter, m_MX, ' ', m_DX, ' ', m_Capacity, ' ', m_Initial_red);
+end;
+
+
+constructor TSlot.Load(net: TNet; var TextReader: TextFile);
+begin
+  m_Net := net;
+  ReadLn(TextReader, m_Pos.X, m_Pos.Y);
+  ReadLn(TextReader, m_Name);
+  ReadLn(TextReader, m_MX, m_DX, m_Capacity, m_Initial_red);
+  m_Net.m_Nodes.Add(Self);
+end;
+
+
+{ TNet }
+
+
+constructor TNet.Create(canvas: TCanvas; box: TScrollBox);
+begin
+  m_Canvas := canvas;
+  m_Box := box;
+  m_Nodes := TObjectList.Create(true);
+  m_Nodes.Capacity := 256;
+  m_Links := TObjectList.Create(true);
+  m_Links.Capacity := 256;
+end;
+
+
+destructor TNet.Destroy;
+begin
+  FreeAndNil(m_Links);
+  FreeAndNil(m_Nodes);
+  inherited;
+end;
+
+
+procedure TNet.Clear;
+begin
+  m_Selected := nil;
+  m_Links.Clear;
+  m_Nodes.Clear;
+  m_Box.Invalidate;
+end;
+
+
+procedure TNet.Select(entity: TEntity);
+begin
+  // Отменяем существующий выбор
+  if m_Selected <> nil then begin
+    m_Selected.Invalidate;
+    m_Selected := nil;
+  end;
+
+  // Выбираем устройство
+  if entity <> nil then begin
+    m_Selected := entity;
+    m_Selected.Invalidate;
+  end;
+end;
+
+
+procedure TNet.Paint;
+var
+  i: Integer;
+  entity: TEntity;
+begin
+  for i := 0 to m_Links.Count - 1 do begin
+    entity := TEntity(m_Links.Items[i]);
+    if entity = m_Selected then begin
+      m_Canvas.Pen.Color := clRed;
+    end else begin
+      m_Canvas.Pen.Color := clBlack;
+    end;
+    entity.Paint;
+  end;
+
+  for i := 0 to m_Nodes.Count - 1 do begin
+    entity := TEntity(m_Nodes.Items[i]);
+    if entity = m_Selected then begin
+      m_Canvas.Pen.Color := clRed;
+      m_Canvas.Font.Color := clRed;
+    end else begin
+      m_Canvas.Pen.Color := clBlack;
+      m_Canvas.Font.Color := clBlack;
+    end;
+    entity.Paint;
+  end;
+end;
+
+
+procedure TNet.Invalidate(x, y, w, h: Integer);
+var
+  r: TRect;
+begin
+  Dec(x, m_Box.HorzScrollBar.Position);
+  r.Left := x;
+  r.Right := x + w;
+  Dec(y, m_Box.VertScrollBar.Position);
+  r.Top := y;
+  r.Bottom := y + h;
+  InvalidateRect(m_Box.Handle, @r, true);
+end;
+
+
+function TNet.HitTest(x, y: Integer): TEntity;
+var
+  i: Integer;
+begin
+  for i := m_Nodes.Count - 1 downto 0 do begin
+    Result := TEntity(m_Nodes.Items[i]);
+    if Result.HitTest(x, y) then Exit;
+  end;
+
+  for i := m_Links.Count - 1 downto 0 do begin
+    Result := TEntity(m_Links.Items[i]);
+    if Result.HitTest(x, y) then Exit;
+  end;
+
+  Result := nil;
+end;
+
+
+procedure TNet.Save(var TextWriter: TextFile);
+var
+  i: Integer;
+  node: TNode;
+  link: TLink;
+begin
+  for i := 0 to m_Nodes.Count - 1 do begin
+    node := TNode(m_Nodes.Items[i]);
+    if node is TBarrier then WriteLn(TextWriter, 'Переход') else
+    if node is TSlot then WriteLn(TextWriter, 'Позиция') else
+    raise Exception.Create('Неизвестное устройство');
+    node.Save(TextWriter);
+  end;
+
+  for i := 0 to m_Links.Count - 1 do begin
+    link := TLink(m_Links.Items[i]);
+    WriteLn(TextWriter, 'Дуга');
+    link.Save(TextWriter);
+  end;
+end;
+
+
+procedure TNet.Load(var TextReader: TextFile);
+var
+  kind: string;
+begin
+  while not SeekEof(TextReader) do begin
+    ReadLn(TextReader, kind);
+    if kind = 'Дуга' then TLink.Load(Self, TextReader) else
+    if kind = 'Переход' then TBarrier.Load(Self, TextReader) else
+    if kind = 'Позиция' then TSlot.Load(Self, TextReader) else
+    raise Exception.Create('Неизвестный элемент');
+  end;
+end;
+
+
+end.

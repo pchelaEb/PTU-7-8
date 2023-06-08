@@ -1,0 +1,165 @@
+object Sim: TSim
+  Left = -4
+  Top = -4
+  Width = 808
+  Height = 580
+  Caption = #1057#1077#1090#1100' '#1055#1077#1090#1088#1080' - '#1052#1086#1076#1077#1083#1080#1088#1086#1074#1072#1085#1080#1077
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 0
+    Top = 40
+    Width = 152
+    Height = 16
+    Caption = #1044#1074#1080#1078#1077#1085#1080#1077' '#1084#1077#1090#1086#1082' '#1074' '#1089#1077#1090#1080
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+  end
+  object GridState: TStringGrid
+    Left = 0
+    Top = 56
+    Width = 792
+    Height = 209
+    ColCount = 2
+    DefaultColWidth = 48
+    DefaultRowHeight = 20
+    RowCount = 2
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking]
+    PopupMenu = PopupAmount
+    TabOrder = 0
+  end
+  object PanelTop: TPanel
+    Left = 0
+    Top = 0
+    Width = 800
+    Height = 33
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 1
+    object Button100: TButton
+      Tag = 100
+      Left = 8
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = '100 '#1096#1072#1075#1086#1074
+      TabOrder = 0
+      OnClick = ButtonStepClick
+    end
+    object Button10: TButton
+      Tag = 10
+      Left = 92
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = '10 '#1096#1072#1075#1086#1074
+      TabOrder = 1
+      OnClick = ButtonStepClick
+    end
+    object Button1: TButton
+      Tag = 1
+      Left = 176
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = '1 '#1096#1072#1075
+      TabOrder = 2
+      OnClick = ButtonStepClick
+    end
+    object ButtonReport: TButton
+      Left = 272
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = #1055#1088#1086#1090#1086#1082#1086#1083
+      TabOrder = 3
+      OnClick = ButtonReportClick
+    end
+  end
+  object PanelBottom: TPanel
+    Left = 0
+    Top = 272
+    Width = 792
+    Height = 274
+    BevelOuter = bvNone
+    BorderWidth = 4
+    TabOrder = 2
+    object Label2: TLabel
+      Left = 8
+      Top = 0
+      Width = 126
+      Height = 13
+      Caption = #1057#1090#1072#1090#1080#1089#1090#1080#1082#1072' '#1087#1086' '#1087#1086#1079#1080#1094#1080#1103#1084
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 8
+      Top = 152
+      Width = 131
+      Height = 13
+      Caption = #1057#1090#1072#1090#1080#1089#1090#1080#1082#1072' '#1087#1086' '#1087#1077#1088#1077#1093#1086#1076#1072#1084
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object GridBarriers: TStringGrid
+      Left = 4
+      Top = 172
+      Width = 784
+      Height = 98
+      ColCount = 100
+      DefaultColWidth = 48
+      DefaultRowHeight = 18
+      RowCount = 4
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking]
+      ScrollBars = ssHorizontal
+      TabOrder = 0
+      RowHeights = (
+        18
+        18
+        18
+        18)
+    end
+    object GridStorages: TStringGrid
+      Left = 4
+      Top = 20
+      Width = 784
+      Height = 125
+      ColCount = 100
+      DefaultColWidth = 48
+      DefaultRowHeight = 18
+      RowCount = 6
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goThumbTracking]
+      TabOrder = 1
+    end
+  end
+  object PopupAmount: TPopupMenu
+    Left = 264
+    Top = 128
+    object MenuAmount: TMenuItem
+      Caption = #1043#1088#1072#1092#1080#1082' '#1079#1072#1075#1088#1091#1078#1077#1085#1085#1086#1089#1090#1080
+      OnClick = MenuAmountClick
+    end
+  end
+end

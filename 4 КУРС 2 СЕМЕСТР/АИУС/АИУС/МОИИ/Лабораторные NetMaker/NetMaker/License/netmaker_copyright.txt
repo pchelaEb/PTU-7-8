@@ -1,0 +1,17 @@
+LICENSE:
+
+
+    NetMaker is free for educational, scientific, home and any other non-profit purposes. You may redistribute it (free!), but it's better idea to distribute the link (http://www.ire.pw.edu.pl/~rsulej/NetMaker), where the manual and the newest version is always up to date.
+    Sources are available on the e-mail request (also free). You may modify it for your own use, but you may not redistribute modified version (if you like, send me your contribution and I will include it in the next version of NetMaker). Also you should distribute the link instead of redistributing unmodified sources. If you want to use some parts of NetMaker code in your freeware application - you must include a notification about the author, which part of NetMaker code was used and where it came from (link).
+    You may not: sell the executables, sources, content of the manual (images, text, example files available on the NetMaker web site) or any part of it; redistribute them without notification about the author; redistribute modified version of the NetMaker (sources or executables). Please, contact me if you need another terms of use.
+
+
+
+NetMaker uses SVM.NET C# port of LIBSVM, entirely contained in SVM.dll file. Sources and documentation of this library may be obtained from http://www.matthewajohnson.org/software/svm.html. SVM.NET is redistributed under GNU GPL license. Copyright notice for SVM.NET is attached in svm_license.txt file. SVM code may be fully excluded from NetMaker package by removing SVM.dll - this will disable all the SVM features.
+
+
+Robert Sulej
+Warsaw University of Technology,
+Institute of Radioelectronics
+Sulej.Robert@gmail.com
+Robert.Sulej@cern.ch

@@ -1,0 +1,108 @@
+1.1.
+x=linspace(0,1,100)'; 
+y1=trimf(x,[0.2 0.4 0.5]); 
+y2=trimf(x,[0.3 0.4 0.8]);
+plot(x,[y1 ],'m',x,[y2 ],'c'); 
+xtitle("ФП trimf ","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=y1','f2(x)=y2', %t); 
+
+2.
+y1=trapmf(x,[0.2 0.5 0.6 0.9]);
+plot(x,[y1 ]); 
+xtitle("ФП trapmf ","x","y(x)"); 
+plot2d(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=y1',1, %t); 
+2.1
+x=linspace(0,1,100)'; 
+y1= trapmf (x,[0.2 0.4 0.5 0.6]); 
+y2= trapmf (x,[0.1 0.3 0.4 0.8]);
+plot(x,[y1 ],'m',x,[y2 ],'c'); 
+xtitle("ФП trapmf ","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=y1','f2(x)=y2', %t);
+
+3.
+y1 = gauss2mf(x, [0.07 0.2 0.14 0.5]);
+y2 = gaussmf(x, [0.07 0.3]);
+plot(x,[y1 ],'m',x,[y2 ],'c'); 
+xtitle("ФП gauss2mf, gaussmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=gauss2mf','f2(x)=gaussmf', %t);
+3.1
+y1 = gauss2mf(x, [0.1 0.5 0.08 0.7]);
+y2 = gaussmf(x, [0.1 0.3]);
+plot(x,[y1 ],'m',x,[y2 ],'c'); 
+xtitle("ФП gauss2mf, gaussmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=gauss2mf','f2(x)=gaussmf', %t);
+
+4.
+y1=gbellmf(x,[10 0.2/2 0.2]);
+plot(x,[y1 ]); 
+xtitle("ФП gbellmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=y1', %t);
+4.1
+y1=gbellmf(x,[5 0.1/2 0.5]);
+y2=gbellmf(x,[6 0.2/2 0.6]); 
+y3=gbellmf(x,[7 0.3/2 0.7]);
+plot(x,[y1 ],'m',x,[y2 ],'c',x,[y3 ],'y'); 
+xtitle("ФП gbellmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=y1','f2(x)=y2','f3(x)=y3', %t);
+
+5.
+sig1=sigmf(x,[ -12 0.7]);
+psig=psigmf(x,[15 0.5 -15 0.7]);
+plot(x,[sig1 ],'m',x,[psig ],'c'); 
+xtitle("ФП sigmf, psigmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=sigmf','f2(x)=psigmf', %t);
+5.1
+sig1=sigmf(x,[15 0.3]); 
+sig2=sigmf(x,[ -17 0.5]);
+psig=psigmf(x,[8 0.5 -8 0.7]); 
+dsig=dsigmf(x,[10 0.3 10 0.6]);
+plot(x,[sig1 ],'m',x,[psig ],'c',x,[sig2 ],'y',x,[dsig ],'r'); 
+xtitle("ФП sigmf, psigmf, dsigmf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=sigmf','f2(x)=psigmf','f3(x)=sigmf','f4(x)=dsigmf',%t);
+
+6.
+function y = smf(x, AB)
+ a = AB(1);
+ b = AB(2);
+ if (a < b) then
+ ab2 = (a+b)/2;
+ y1 = (x >= a & x <= ab2) .* (2.*((x-a)/(b-a)).^2);
+ y2 = (x <= b & x > ab2) .* (1-2.*((x-b)/(b-a)).^2);
+ y = y1 + y2 + (x > b) .* ones(size(x, 1), size(x, 2));
+ else
+ y = zeros(size(x, 1), size(x, 2));
+ end
+endfunction
+s=smf(x,[0.3 0.7]);
+plot(x,[s ]); 
+xtitle("ФП smf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=smf', %t);
+6.1
+p=pimf(x,[0.2 0.5 0.7 1.0]);
+z=zmf(x,[0.1 0.4]);
+s=smf(x,[0.7 0.9]);
+plot(x,[p ],'m',x,[z ],'c',x,[s ],'y'); 
+xtitle("ФП pimf, zmf, smf","x","y(x)"); 
+plot(x, 0*x) 
+xgrid //pchelkina
+legend('f1(x)=pimf','f2(x)=zmf','f3(x)=smf',%t);

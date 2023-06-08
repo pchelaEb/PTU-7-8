@@ -1,0 +1,65 @@
+// Функция принадлежности Жарко
+function y = hot(x)
+    if (x < 25) then
+        y = 0
+    elseif (x >= 25 & x < 35) then
+        y = (x - 25) / 10
+    elseif (x >= 35 & x < 45) then
+        y = 1
+    elseif (x >= 45 & x < 55) then
+        y = (55 - x) / 10
+    else
+        y = 0
+    end
+endfunction
+
+// Функция принадлежности Высокая мощность охлаждения
+function y = high_power(x)
+    y = 1 / (1 + exp(-0.1 * (x - 50)))
+endfunction
+
+// Вывод функции принадлежности Жарко
+x = 0:60;
+y = hot(x);
+plot(x, y)
+xlabel('Температура')
+ylabel('Степень принадлежности')
+title('Функция принадлежности Жарко')
+
+// Вывод функции принадлежности Высокая мощность охлаждения
+x = 0:100;
+y = high_power(x);
+plot(x, y)
+xlabel('Мощность охлаждения')
+ylabel('Степень принадлежности')
+title('Функция принадлежности Высокая мощность охлаждения')
+
+// Построение нечеткого отношения по правилу Мамдани
+rule1 = min(hot(40+5), high_power(x))
+rule2 = min(hot(40), high_power(x))
+rule3 = min(hot(40-5), high_power(x))
+result = max(rule1, rule2, rule3)
+
+// Вывод поверхности нечеткого отношения
+[X, Y] = meshgrid(0:100, 0:60);
+Z = zeros(size(X));
+for i = 1:size(X, 1)
+    for j = 1:size(X, 2)
+        Z(i,j) = max(min(hot(Y(i,j)), high_power(X(i,j))), 0);
+    end
+end
+surf(X, Y, Z);
+xlabel('Мощность охлаждения')
+ylabel('Температура')
+zlabel('Степень принадлежности')
+title('Поверхность нечеткого отношения')
+
+// Средняя мощность охлаждения при Т=40±5°C
+avg_power = sum(result .* x) / sum(result)
+disp("Средняя мощность охлаждения при Т=40±5°C: " + string(avg_power))
+
+// Границы диапазона температур, если мощность охлаждения от 20% до 30%
+subset = min(high_power(20:30), result)
+lower_bound = min(x(subset > 0))
+upper_bound = max(x(subset > 0))
+disp("Границы диапазона температур: [" + string(lower_bound) + ", " + string(upper_bound) + "]")

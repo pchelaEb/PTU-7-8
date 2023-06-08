@@ -1,0 +1,564 @@
+unit netUMain;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, Menus, ToolWin, ComCtrls, ImgList, netUCore, StdCtrls;
+
+
+type
+  TnetMain = class(TForm)
+    ScrollBox: TScrollBox;
+    PaintBox: TPaintBox;
+    MainMenu: TMainMenu;
+    MenuFile: TMenuItem;
+    MenuNew: TMenuItem;
+    MenuOpen: TMenuItem;
+    MenuSave: TMenuItem;
+    MenuHR1: TMenuItem;
+    MenuQuit: TMenuItem;
+    OpenDialog: TOpenDialog;
+    SaveDialog: TSaveDialog;
+    ToolBar: TToolBar;
+    ImageList: TImageList;
+    ButtonGo: TToolButton;
+    ButtonVR1: TToolButton;
+    ButtonSelect: TToolButton;
+    ButtonSlot: TToolButton;
+    ButtonBarrier: TToolButton;
+    ButtonLink: TToolButton;
+    ButtonGen: TToolButton;
+    ButtonShaman: TToolButton;
+    ButtonMurder: TToolButton;
+    ButtonQueue: TToolButton;
+    N1: TMenuItem;
+    N2: TMenuItem;
+    N3: TMenuItem;
+    N4: TMenuItem;
+    N5: TMenuItem;
+    N6: TMenuItem;
+    N7: TMenuItem;
+    N8: TMenuItem;
+    N9: TMenuItem;
+    C1: TMenuItem;
+    N10: TMenuItem;
+    N11: TMenuItem;
+    N12: TMenuItem;
+    Button2: TButton;
+    ButtonVR2: TToolButton;
+    Button99: TButton;
+    procedure PaintBoxPaint(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure MenuNewClick(Sender: TObject);
+    procedure MenuOpenClick(Sender: TObject);
+    procedure MenuSaveClick(Sender: TObject);
+    procedure MenuQuitClick(Sender: TObject);
+    procedure ButtonLinkClick(Sender: TObject);
+    procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+    procedure PaintBoxMouseMove(Sender: TObject;
+      Shift: TShiftState; X, Y: Integer);
+    procedure ButtonGoClick(Sender: TObject);
+    procedure N3Click(Sender: TObject);
+    procedure N4Click(Sender: TObject);
+    procedure N5Click(Sender: TObject);
+    procedure N6Click(Sender: TObject);
+    procedure N7Click(Sender: TObject);
+    procedure N8Click(Sender: TObject);
+    procedure N9Click(Sender: TObject);
+    procedure N10Click(Sender: TObject);
+    procedure N12Click(Sender: TObject);
+    procedure Button99Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure GetTables;
+  private
+    // Сеть
+    m_Net : TNet;
+    // Начало дуги
+    m_SourceNode : TNode;
+  end;
+
+
+var
+  netMain: TnetMain;
+  ns, nb : Integer;
+
+
+implementation
+
+{$R *.dfm}
+
+uses
+ netUAbout, Math, netUProp, netUView, netUTables;
+
+
+procedure TnetMain.PaintBoxPaint(Sender: TObject);
+begin
+  m_Net.Paint;
+end;
+
+
+procedure TnetMain.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  link : TLink;
+  node : TNode;
+  i : Integer;
+begin
+  if m_Net.m_Selected is TLink then begin
+    link := TLink(m_Net.m_Selected);
+    case Key of
+      VK_DELETE : begin
+        Key := 0;
+        m_Net.Select(nil);
+        m_Net.m_Links.Remove(link);
+      end;
+    end;
+  end else if m_Net.m_Selected is TNode then begin
+    node := TNode(m_Net.m_Selected);
+    case Key of
+      VK_DELETE : begin
+        Key := 0;
+        m_Net.Select(nil);
+        with m_Net.m_Links do begin
+          for i := Count - 1 downto 0 do begin
+            link := TLink(Items[i]);
+            if (link.m_A = node) or (link.m_B = node) then begin
+              link.Invalidate;
+              Remove(link);
+            end;
+          end;
+        end;
+        if m_SourceNode = node then m_SourceNode := nil;
+        m_Net.m_Nodes.Remove(node);
+      end;
+      VK_RETURN : begin
+        Key := 0;
+        ShowProp(node);
+      end;
+      VK_LEFT : begin
+        Key := 0;
+        if ssCtrl in Shift then begin
+          node.ChangePos(node.m_Pos.X - 128, node.m_Pos.Y);
+        end else begin
+          node.ChangePos(node.m_Pos.X - 16, node.m_Pos.Y);
+        end;
+      end;
+      VK_RIGHT : begin
+        Key := 0;
+        if ssCtrl in Shift then begin
+          node.ChangePos(node.m_Pos.X + 128, node.m_Pos.Y);
+        end else begin
+          node.ChangePos(node.m_Pos.X + 16, node.m_Pos.Y);
+        end;
+      end;
+      VK_UP : begin
+        Key := 0;
+        if ssCtrl in Shift then begin
+          node.ChangePos(node.m_Pos.X, node.m_Pos.Y - 64);
+        end else begin
+          node.ChangePos(node.m_Pos.X, node.m_Pos.Y - 16);
+        end;
+      end;
+      VK_DOWN : begin
+        Key := 0;
+        if ssCtrl in Shift then begin
+          node.ChangePos(node.m_Pos.X, node.m_Pos.Y + 64);
+        end else begin
+          node.ChangePos(node.m_Pos.X, node.m_Pos.Y + 16);
+        end;
+      end;
+    end;
+  end;
+end;
+
+
+procedure TnetMain.FormCreate(Sender: TObject);
+begin
+  m_Net := TNet.Create(PaintBox.Canvas, ScrollBox);
+end;
+
+
+procedure TnetMain.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(m_Net);
+end;
+
+
+procedure TnetMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  CanClose := MessageDlg('Вы действительно хотите выйти из программы?',
+    mtConfirmation, [mbYes, mbNo], 0) = mrYes;
+end;
+
+
+procedure TnetMain.MenuNewClick(Sender: TObject);
+begin
+  if MessageDlg('Очистить сеть?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then begin
+    ButtonSelect.Down := true;
+    m_Net.Clear;
+  end;
+end;
+
+
+procedure TnetMain.MenuOpenClick(Sender: TObject);
+var
+  Reader : TextFile;
+begin
+  if not OpenDialog.Execute then Exit;
+
+  AssignFile(Reader, OpenDialog.FileName);
+  Reset(Reader);
+  try
+    ButtonSelect.Down := true;
+    m_Net.Clear;
+    m_Net.Load(Reader);
+  finally
+    CloseFile(Reader);
+  end;
+end;
+
+
+procedure TnetMain.MenuSaveClick(Sender: TObject); //сохранение модели
+var
+  Writer : TextFile;
+  i, j : Integer;
+  s : string;
+begin
+  SaveDialog.FileName := OpenDialog.FileName;
+  if not SaveDialog.Execute then Exit;
+
+  AssignFile(Writer, SaveDialog.FileName);
+  Rewrite(Writer);
+  try
+    if SaveDialog.FilterIndex = 1 then begin
+      ButtonSelect.Down := true;
+      m_Net.Save(Writer);
+    end else begin
+      GetTables;
+      WriteLn(Writer, ns, ' ', nb, ' 0');
+      for i := 1 to ns do begin
+        WriteLn(Writer, netForm1.GridCapacity.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridDelay.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridActive.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridTimeLive.Cells[i - 1, 1]);
+       // WriteLn(Writer, netForm1.GridMetki.Cells[i - 1, 0]);
+        s := '';
+        j := 1;
+        while (j <= netForm1.GridMetki.ColCount)and(netForm1.GridMetki.Cells[j,i]<>'') do begin
+          s:=s+netForm1.GridMetki.Cells[j,i]+';';
+          j:=j+1;
+        end;
+        WriteLn(Writer, s);
+        if pos('(изм)',netForm1.GridMetki.Cells[0,i])>0 then
+         WriteLn(Writer, 'remake')
+        else
+         WriteLn(Writer, '0');
+        end;
+      for i := 1 to nb do begin
+        WriteLn(Writer, netForm1.GridSleep.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridPriority.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridPorog.Cells[i - 1, 1]);
+        WriteLn(Writer, netForm1.GridPot.Cells[i - 1, 1]);
+      end;
+      for i := 1 to ns do
+        for j := 1 to nb do begin
+          WriteLn(Writer, netForm1.GridIncident.Cells[j, i]);
+          WriteLn(Writer, '');
+        end;
+      WriteLn(Writer, '<EOF>');
+    end;     
+//    CloseFile(Writer);
+  finally
+    CloseFile(Writer);
+  end;
+end;
+
+
+procedure TnetMain.MenuQuitClick(Sender: TObject);
+begin
+  Close;
+end;
+
+
+procedure TnetMain.ButtonLinkClick(Sender: TObject);
+begin
+  m_Net.Select(nil);
+  m_SourceNode := nil;
+end;
+
+
+procedure TnetMain.PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+var
+  entity : TEntity;
+  link : TLink;
+  i : Integer;
+begin
+  if ButtonSelect.Down then begin
+    // Режим выбора
+    entity := m_Net.HitTest(X, Y);
+    m_Net.Select(entity);
+    if (Button = mbRight) and (entity is TNode) then begin
+      ShowProp(TNode(entity));
+    end;
+  end else if Button = mbRight then begin
+    // Отмена
+    m_Net.Select(nil);
+    ButtonSelect.Down := true;
+  end else if Button = mbLeft then begin
+    // Сотворение
+    if ButtonBarrier.Down then m_Net.Select(TBarrier.Create(m_Net, X, Y, 1, 0, 1, 1, 0));
+    if ButtonSlot.Down then m_Net.Select(TSlot.Create(m_Net, X, Y, 1, 0, 1, 0,1));
+    if ButtonQueue.Down then m_Net.Select(TQueue.Create(m_Net, X, Y, 10, 0));
+    if ButtonGen.Down then m_Net.Select(TGenerator.Create(m_Net, X, Y, 100, 0));
+    if ButtonMurder.Down then m_Net.Select(TMurder.Create(m_Net, X, Y));
+    if ButtonShaman.Down then m_Net.Select(TShaman.Create(m_Net, X, Y, 0));
+
+    // Связывание
+    if ButtonLink.Down then begin
+      entity := m_Net.HitTest(X, Y);
+      if (entity = m_SourceNode) or not(entity is TNode) then Exit;
+      if m_SourceNode = nil then begin
+        if not TNode(entity).CanAddOutput then Exit;
+        m_SourceNode := TNode(entity);
+        m_Net.Select(entity);
+      end else begin
+        if not TNode(entity).CanAddInput then Exit;
+        if ((m_SourceNode is TBarrier) and (entity is TDevice)) or
+           ((m_SourceNode is TDevice) and (entity is TBarrier))
+        then else Exit;
+        with m_Net.m_Links do begin
+          for i := 0 to Count - 1 do begin
+            link := TLink(Items[i]);
+            if ((link.m_A = m_SourceNode) and (link.m_B = entity)) or
+               ((link.m_B = m_SourceNode) and (link.m_A = entity))
+            then Exit;
+          end;
+        end;
+        m_Net.Select(TLink.Create(m_Net, m_SourceNode, TNode(entity)));
+        m_SourceNode := nil;
+      end;
+    end;
+  end;
+end;
+
+
+procedure TnetMain.PaintBoxMouseMove(Sender: TObject;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  // Перемещение
+  if (ssLeft in Shift) and ButtonSelect.Down and (m_Net.m_Selected is TNode) then begin
+    TNode(m_Net.m_Selected).ChangePos(X, Y);
+  end;
+end;
+
+
+procedure TnetMain.ButtonGoClick(Sender: TObject);
+var
+  GPSS : TGPSS;
+  View : TnetView;
+begin
+  GPSS := TGPSS.Create;
+  try
+    m_Net.Translate(GPSS);
+    View := TnetView.Create(Self);
+    try
+      View.Memo.Lines.Assign(GPSS.m_Lines);
+      View.ShowModal;
+    finally
+      FreeAndNil(View);
+    end;
+  finally
+    FreeAndNil(GPSS);
+  end;
+end;
+
+
+procedure TnetMain.N3Click(Sender: TObject);
+begin
+ Buttonslot.Down:= true;
+end;
+
+procedure TnetMain.N4Click(Sender: TObject);
+begin
+ ButtonBarrier.Down:=true;
+end;
+
+procedure TnetMain.N5Click(Sender: TObject);
+begin
+ Buttongen.Down:=true;
+end;
+
+procedure TnetMain.N6Click(Sender: TObject);
+begin
+ ButtonShaman.Down:=true;
+end;
+
+procedure TnetMain.N7Click(Sender: TObject);
+begin
+ButtonMurder.Down:=true;
+end;
+
+procedure TnetMain.N8Click(Sender: TObject);
+begin
+ButtonQueue.Down:=true;
+end;
+
+procedure TnetMain.N9Click(Sender: TObject);
+begin
+ ButtonLink.Down:=true;
+end;
+
+procedure TnetMain.N10Click(Sender: TObject);
+begin
+ // вывести справочную информацию
+  Winhelp(Handle,'help.hlp',HELP_FINDER,0);
+end;
+
+procedure TnetMain.N12Click(Sender: TObject);
+begin
+ netAbout.Show;
+end;
+
+procedure TnetMain.GetTables;
+var
+   node : TNode;
+   link : TLink;
+   i,j : Integer;
+   b,s : Integer;
+   b1,s1 : Integer;
+   k : Integer;
+begin
+   b := 0; b1 := 0;
+   s := 0; s1 := 0;
+   for i := 0 to m_net.m_Nodes.Count - 1 do begin
+      node := TNode(m_net.m_Nodes.Items[i]);
+      if node is TBarrier then b := b + 1
+      else if node is TSlot then s := s + 1;
+   end;
+   netForm1.GridCapacity.ColCount := s;
+   netForm1.GridDelay.ColCount := s;
+   netForm1.GridActive.ColCount := s;
+   netForm1.GridTimeLive.ColCount := s;
+   netForm1.GridSleep.ColCount := b;
+   netForm1.GridPriority.ColCount := b;
+   netForm1.GridPorog.ColCount :=b;
+   netForm1.GridPot.ColCount := b;
+   netForm1.GridMetki.RowCount := s + 1;
+   ns := s; nb := b;
+   if b > 0 then netForm1.GridIncident.ColCount := b + 1
+   else netForm1.GridIncident.ColCount := b + 2;
+   if s > 0 then netForm1.GridIncident.RowCount := s + 1
+   else netForm1.GridIncident.RowCount := s + 2;
+   b := 0;
+   s := 0;
+   if m_net.m_Nodes.Count = 0 then Exit;
+   if TNode(m_net.m_Nodes.Items[0]) is TSlot then Inc(s1)
+   else if TNode(m_net.m_Nodes.Items[0]) is TBarrier then Inc(b1);
+   for i := 0 to m_net.m_Nodes.Count - 1 do begin
+      node := TNode(m_net.m_Nodes.Items[i]);
+      if node is TBarrier then begin
+         netForm1.GridSleep.Cells[b,0] := node.m_Name;
+         netForm1.GridSleep.Cells[b,1] := IntToStr(TBarrier(node).m_MX) + '#' + IntToStr(TBarrier(node).m_DX);
+         netForm1.GridPriority.Cells[b,0] := node.m_Name;
+         netForm1.GridPriority.Cells[b,1] := IntToStr(TBarrier(node).m_Priority);
+         netForm1.GridPorog.Cells[b,0] := node.m_Name;
+         netForm1.GridPorog.Cells[b,1] := IntToStr(TBarrier(node).m_Porog);
+         netForm1.GridPot.Cells[b,0] := node.m_Name;
+         netForm1.GridPot.Cells[b,1] := FloatToStr(TBarrier(node).m_Pot);
+         Inc(b);
+         netForm1.GridIncident.Cells[b,0] := node.m_Name;
+         for j := 0 to m_net.m_Links.Count - 1 do begin
+            link := TLink(m_net.m_Links.Items[j]);
+            if link.m_A = node then begin
+               if link.m_B is TSlot then begin
+                  k := m_net.m_Nodes.IndexOf(link.m_B);
+                  while k <> 0 do begin
+                     if TNode(m_net.m_Nodes.Items[k]) is TSlot then Inc(s1);
+                     Dec(k);
+                  end;
+                  netForm1.GridIncident.Cells[b,s1] := '+1';
+                  if TNode(m_net.m_Nodes.Items[0]) is TSlot then s1 := 1
+                  else s1 := 0;
+               end;
+            end;
+         end;
+      end
+      else if node is TSlot then begin
+         netForm1.GridCapacity.Cells[s,0] := node.m_Name;
+         netForm1.GridCapacity.Cells[s,1] := IntToStr(TSlot(node).m_Capacity);
+         netForm1.GridDelay.Cells[s,0] := node.m_Name;
+         netForm1.GridDelay.Cells[s,1] := IntToStr(TSlot(node).m_MX) + '#' + IntToStr(TSlot(node).m_DX);
+         netForm1.GridActive.Cells[s,0] := node.m_Name;
+         netForm1.GridActive.Cells[s,1] := IntToStr(TSlot(node).m_Initial);
+         netForm1.GridTimeLive.Cells[s,0] := node.m_Name;
+         netForm1.GridTimeLive.Cells[s,1] := IntToStr(TSlot(node).m_TimeLive);
+         if netForm1.GridMetki.ColCount <= TSlot(node).m_Initial then
+          netForm1.GridMetki.ColCount:=TSlot(node).m_Initial+1;
+         for j := 0 to TSlot(node).m_Initial-1 do
+         netForm1.GridMetki.Cells[j+1,s+1] := FloatToStr(TSlot(node).m_Metki[j]);
+         if TSlot(node).m_Remake then
+          netForm1.GridMetki.Cells[0,s+1] := TSlot(node).m_Name+'(изм)'
+         else
+          netForm1.GridMetki.Cells[0,s+1] := TSlot(node).m_Name;
+         netForm1.GridIncident.Cells[0,s] := node.m_Name;
+         Inc(s);
+         for j := 0 to m_net.m_Links.Count - 1 do begin
+            link := TLink(m_net.m_Links.Items[j]);
+            if link.m_A = node then begin
+               if link.m_B is TBarrier then begin
+                  k := m_net.m_Nodes.IndexOf(link.m_B);
+                  while k <> 0 do begin
+                     if TNode(m_net.m_Nodes.Items[k]) is TBarrier then Inc(b1);
+                     Dec(k);
+                  end;
+                  netForm1.GridIncident.Cells[b1,s] := '-1';
+                  if TNode(m_net.m_Nodes.Items[0]) is TBarrier then b1 := 1
+                  else b1 := 0;
+               end;
+            end;
+         end;
+      end;
+   end;
+end;
+
+procedure TnetMain.Button99Click(Sender: TObject);
+var
+Rows:integer;
+Cols:integer;
+begin
+   GetTables;
+
+   Rows := netForm1.GridIncident.RowCount -1;
+   Cols := netForm1.GridIncident.ColCount - 1;
+   netForm1.SpinStorages.Value := Rows;
+   netForm1.SpinBarriers.Value  := Cols;
+   netForm1.ShowModal;
+end;
+
+procedure TnetMain.Button2Click(Sender: TObject);
+var
+   node : TNode;
+   b,s : Integer;
+   i : Integer;
+begin
+   b := 0; s := 0;
+   for i := 0 to m_net.m_Nodes.Count - 1 do begin
+      node := TNode(m_net.m_Nodes.Items[i]);
+      if node is TBarrier then begin
+         Inc(b);
+         node.m_Name := 'T' + IntToStr(b);
+      end
+      else if node is TSlot then begin
+         Inc(s);
+         node.m_Name := 'P' + IntToStr(s);
+      end;
+   end;
+   m_Net.Paint;
+end;
+
+end.

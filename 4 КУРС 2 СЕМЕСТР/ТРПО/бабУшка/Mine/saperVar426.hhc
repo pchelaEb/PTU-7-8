@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Ntilde;&agrave;&iuml;&aring;&eth; &acirc;&agrave;&eth;&egrave;&agrave;&iacute;&ograve; 426">
+		<param name="Local" value="mine1.html">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Icirc;&aacute;&ugrave;&aring;&aring;">
+		<param name="Local" value="mine_object.html">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="&times;&aring;&igrave;&iuml;&egrave;&icirc;&iacute;&ucirc;">
+			<param name="Local" value="champ.htm">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Iuml;&eth;&agrave;&acirc;&egrave;&euml;&agrave;">
+		<param name="Local" value="mine_play.html">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="&Iuml;&eth;&egrave;&aring;&igrave;&ucirc; &egrave;&atilde;&eth;&ucirc;">
+			<param name="Local" value="mine_tips.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="&Iacute;&agrave;&ntilde;&ograve;&eth;&icirc;&eacute;&ecirc;&egrave; &egrave;&atilde;&eth;&icirc;&acirc;&icirc;&atilde;&icirc; &iuml;&icirc;&euml;&yuml;">
+			<param name="Local" value="mine_customize_field.html">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

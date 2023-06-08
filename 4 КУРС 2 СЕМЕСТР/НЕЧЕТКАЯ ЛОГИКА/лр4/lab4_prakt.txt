@@ -1,0 +1,46 @@
+ ans  =
+ 
+    1.  
+ 
+-->sciFLTEditor()
+ 
+-->fls=loadfls("C:/Users/olpch/Documents/4 КУРС 2 СЕМЕСТР/НЕЧЕТКАЯ ЛОГИКА/лр4/invest.fls")
+ fls  =
+ 
+         name : 'Pchelkina Mamdani'
+      comment : ''
+         type : 'm'
+        SNorm : 'max'
+     SNormPar : [0]
+        TNorm : 'min'
+     TNormPar : [0]
+         Comp : 'one'
+      CompPar : [0]
+    ImpMethod : 'prod'
+    AggMethod : 'max'
+ defuzzMethod : 'centroide'
+        input : 2 input(s)
+       output : 1 output(s)
+         rule : 4 rule(s)
+ 
+-->plotsurf(fls)
+ !--error 999 
+Invalid index in rule.at line     152 of function plotsurf called by :  
+plotsurf(fls,[1 2],[1],[0 0],[21 21],1);
+while executing a callback
+at line      94 of function plotsurf called by :  
+plotsurf(fls)
+ 
+ 
+-->sciFLTEditor()
+ 
+-->plotsurf(fls)
+ !--error 999 
+Invalid index in rule.at line     152 of function plotsurf called by :  
+plotsurf(fls,[1 2],[1],[0 0],[21 21],1);
+while executing a callback
+at line      94 of function plotsurf called by :  
+plotsurf(fls)
+ 
+ 
+-->diary(0)

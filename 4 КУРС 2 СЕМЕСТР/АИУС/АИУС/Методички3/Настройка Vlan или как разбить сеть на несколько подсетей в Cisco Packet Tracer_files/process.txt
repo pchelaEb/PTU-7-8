@@ -1,0 +1,1 @@
+if (typeof pluso != "undefined") pluso.setCounter("0", "http://findotvet.ru/astrojka-vlan-ili-kak-razbit-set-na-neskolko-podsetej-v-cisco-packet-tracer/", undefined, undefined, undefined);new Image().src = "//codata.ru/0.gif?pid=PLUSO&id=1371987591420";
